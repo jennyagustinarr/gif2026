@@ -1,0 +1,79 @@
+import type { Metadata } from "next";
+import { Calendar, MapPin } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
+import SeminarRegisterCard from "./SeminarRegisterCard";
+import Reveal from "@/components/Reveal";
+import { agendaSessions, eventInfo } from "@/data/agenda";
+
+export const metadata: Metadata = {
+  title: "Daftar Seminar",
+  description:
+    "Daftar untuk menghadiri rangkaian sesi seminar utama Green Impact Festival 2026 di Jakarta.",
+};
+
+const POSTER_URL =
+  "https://firebasestorage.googleapis.com/v0/b/sre-website-a43e8.appspot.com/o/greenimpact-festival-2025%2Fimages%2Fgreenimpactfest-logo.png?alt=media&token=ebdc6d50-9033-4bd4-901e-5a60ad9cc5de";
+
+export default function SeminarRegistration() {
+  return (
+    <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
+      <Reveal>
+        <SectionHeading title="Daftar Seminar" />
+      </Reveal>
+
+      <Reveal delay={100} direction="zoom">
+        <div className="mt-10 rounded-3xl bg-gradient-to-br from-lime-100 via-emerald-50 to-lime-200 p-6 sm:p-8 grid gap-8 lg:grid-cols-[280px_1fr] text-neutral-900 shadow-[0_28px_60px_-30px_rgba(61,220,132,0.5)]">
+          <div className="group relative overflow-hidden rounded-2xl bg-night-950 aspect-square flex items-center justify-center">
+            <span className="absolute h-40 w-40 rounded-full bg-mint-500/20 blur-3xl animate-blob" />
+            <img
+              src={POSTER_URL}
+              alt="Green Impact Festival 2026"
+              className="relative h-24 w-24 object-contain transition-transform duration-700 group-hover:scale-110 animate-float"
+            />
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-extrabold">{eventInfo.name}</h2>
+            <p className="text-sm text-neutral-600 mt-1">{eventInfo.organizer}</p>
+
+            <div className="mt-5 flex flex-col sm:flex-row gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <Calendar size={18} />
+                <span>{eventInfo.date}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin size={18} />
+                <span>{eventInfo.location}</span>
+              </div>
+            </div>
+
+            <SeminarRegisterCard />
+          </div>
+        </div>
+      </Reveal>
+
+      <div className="mt-14">
+        <Reveal>
+          <p className="font-semibold text-mint-100 mb-4">Sesi yang akan berlangsung</p>
+        </Reveal>
+        <div className="space-y-3">
+          {agendaSessions.map((session, i) => (
+            <Reveal key={i} delay={i * 70} direction="left">
+              <div className="card-hover rounded-2xl border border-lime-300/30 bg-night-900 px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 hover:border-mint-400/50">
+                <div>
+                  <span className="text-sm font-medium text-mint-300">{session.time}</span>
+                  <p className="font-semibold text-mint-100">{session.title}</p>
+                </div>
+                {session.speakers && (
+                  <span className="text-xs text-mint-200/50">
+                    {session.speakers.length} pembicara
+                  </span>
+                )}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

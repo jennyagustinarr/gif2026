@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #050f0a;
+  color: #eafaf1;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #3ddc84;
+  color: #050f0a;
+}
+
+/* Scrollbar gelap supaya konsisten dengan tema */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050f0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #163823;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1f9d55;
+}
+
+@layer components {
+  /* ---------------------------------------------------------------
+     Scroll reveal — dipakai lewat <Reveal /> (components/Reveal.tsx)
+     --------------------------------------------------------------- */
+  .reveal {
+    opacity: 0;
+    transition:
+      opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-up {
+    transform: translateY(30px);
+  }
+
+  .reveal-down {
+    transform: translateY(-24px);
+  }
+
+  .reveal-left {
+    transform: translateX(-36px);
+  }
+
+  .reveal-right {
+    transform: translateX(36px);
+  }
+
+  .reveal-zoom {
+    transform: scale(0.93);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Kartu yang terangkat + bercahaya saat di-hover */
+  .card-hover {
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s ease,
+      box-shadow 0.35s ease,
+      background-color 0.35s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 45px -22px rgba(61, 220, 132, 0.55);
+  }
+
+  /* Teks gradien bergerak */
+  .text-shimmer {
+    background-image: linear-gradient(90deg, #6ee7a8, #d9f99d, #3ddc84, #a7f3d0, #6ee7a8);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Garis bawah yang melebar dari kiri saat hover */
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background-color: #6ee7a8;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .link-underline:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Kilau yang menyapu tombol utama */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .btn-shine::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.32), transparent 75%);
+    transform: translateX(-120%);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-shine:hover::before {
+    transform: translateX(120%);
+  }
+
+  /* Marquee: butuh dua salinan konten berdampingan */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+}
+
+/* Hormati preferensi "kurangi gerakan" milik pengguna */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
