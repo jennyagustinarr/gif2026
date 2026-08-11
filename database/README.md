@@ -4,12 +4,13 @@ Semua yang berkaitan dengan database ada di folder ini. Target: **MySQL / MariaD
 
 | File | Fungsi |
 | --- | --- |
-| `01-schema.sql` | Struktur database: 7 tabel + 5 view. **Wajib di-import pertama.** Aman dijalankan berulang. |
+| `01-schema.sql` | Struktur database: 7 tabel + 6 view. **Wajib di-import pertama.** Aman dijalankan berulang. |
 | `02-seed.sql` | Data contoh (fiktif) untuk menguji tampilan dan query. Opsional. |
 | `03-queries.sql` | Kumpulan query rekap siap pakai untuk panitia. Jalankan per bagian, bukan di-import. |
 | `04-reset.sql` | **Menghapus seluruh database.** Hanya untuk tahap pengembangan. |
 | `05-migration-campus-roadshow.sql` | Migrasi untuk database yang di-import sebelum program Campus Roadshow ada. Tidak menghapus data. |
 | `06-migration-partner-phone.sql` | Migrasi penambahan kolom `phone` di `partnership_inquiries`. Tidak menghapus data. |
+| `07-migration-roadshow-multi-campus.sql` | Migrasi Campus Roadshow jadi multi-agenda: kolom `campus` + email unik per kampus. Tidak menghapus data. |
 | `er-diagram.md` | Diagram relasi antar tabel. |
 
 Nama database: **`green_impact_festival`**
@@ -97,6 +98,7 @@ SELECT * FROM submission_logs WHERE saved_to IS NULL ORDER BY created_at DESC;
 | `v_necsc_per_subtema` | Sebaran NECSC per subtema & kategori |
 | `v_ya_per_subtema` | Sebaran Youth Ambassador per subtema |
 | `v_roadshow_per_status` | Sebaran Campus Roadshow per status peserta + jumlah hadir |
+| `v_roadshow_per_kampus` | Jumlah pendaftar Campus Roadshow per kampus/agenda |
 
 Cara pakai sama seperti tabel biasa: `SELECT * FROM v_rekap_program;`
 
@@ -104,7 +106,7 @@ Cara pakai sama seperti tabel biasa: `SELECT * FROM v_rekap_program;`
 
 Tabel `necsc_registrations`, `youth_ambassador_registrations`, dan `seminar_registrations` punya `UNIQUE` pada kolom email — satu orang hanya bisa mendaftar sekali per program, sesuai aturan lomba. Kalau ada yang mendaftar dua kali, aplikasi membalas **"Email ini sudah pernah didaftarkan untuk program tersebut"**, bukan error teknis.
 
-`campus_roadshow_registrations` juga dibatasi satu email satu pendaftaran. Hanya `partnership_inquiries` yang sengaja **tidak** dibatasi, karena satu organisasi wajar mengirim lebih dari satu pengajuan.
+`campus_roadshow_registrations` dibatasi per agenda lewat `UNIQUE(campus, email)` — satu orang boleh ikut roadshow di beberapa kampus, tapi hanya sekali per kampus. Hanya `partnership_inquiries` yang sengaja **tidak** dibatasi, karena satu organisasi wajar mengirim lebih dari satu pengajuan.
 
 ---
 

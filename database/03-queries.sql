@@ -100,11 +100,22 @@ SELECT `subtheme`, `full_name`, `score`, `status`
 -- CAMPUS ROADSHOW
 -- ---------------------------------------------------------------------
 
+-- Jumlah pendaftar per kampus/agenda
+SELECT * FROM `v_roadshow_per_kampus`;
+
 -- Sebaran peserta per status
 SELECT * FROM `v_roadshow_per_status`;
 
+-- Daftar peserta satu kampus saja (ganti slug-nya: itb, undip, dst)
+SELECT `full_name`, `email`, `whatsapp`, `current_status`,
+       COALESCE(`institution`, `other_status`) AS `asal`
+  FROM `campus_roadshow_registrations`
+ WHERE `campus` = 'itb'
+ ORDER BY `created_at`;
+
 -- Daftar lengkap siap ekspor ke Excel
 SELECT `id`                                        AS `No`,
+       `campus`                                    AS `Kampus`,
        `full_name`                                 AS `Nama Lengkap`,
        `email`                                     AS `Email`,
        `whatsapp`                                  AS `WhatsApp`,

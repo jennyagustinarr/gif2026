@@ -118,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `youth_ambassador_registrations` (
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `campus_roadshow_registrations` (
   `id`             INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `campus`         VARCHAR(60)  NOT NULL COMMENT 'Slug agenda: itb, undip, dst',
   `full_name`      VARCHAR(150) NOT NULL,
   `email`          VARCHAR(150) NOT NULL,
   `whatsapp`       VARCHAR(30)  NOT NULL COMMENT 'Format lokal diawali 08',
@@ -135,7 +136,9 @@ CREATE TABLE IF NOT EXISTS `campus_roadshow_registrations` (
   `created_at`     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uq_roadshow_email` (`email`),
+  -- Satu orang boleh ikut lebih dari satu kampus, tapi hanya sekali per kampus.
+  UNIQUE KEY `uq_roadshow_campus_email` (`campus`, `email`),
+  KEY `idx_roadshow_campus`   (`campus`),
   KEY `idx_roadshow_status`   (`current_status`),
   KEY `idx_roadshow_attended` (`attended`),
   KEY `idx_roadshow_created`  (`created_at`)
@@ -261,4 +264,14 @@ CREATE OR REPLACE VIEW `v_roadshow_per_status` AS
          SUM(`attended`)   AS `hadir`
     FROM `campus_roadshow_registrations`
    GROUP BY `current_status`
+   ORDER BY `jumlah` DESC;
+
+-- Jumlah pendaftar Campus Roadshow per kampus/agenda
+CREATE OR REPLACE VIEW `v_roadshow_per_kampus` AS
+  SELECT `campus`                AS `kampus`,
+         COUNT(*)                AS `jumlah`,
+         SUM(`attended`)         AS `hadir`,
+         MAX(`created_at`)       AS `pendaftar_terakhir`
+    FROM `campus_roadshow_registrations`
+   GROUP BY `campus`
    ORDER BY `jumlah` DESC;

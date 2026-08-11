@@ -12,53 +12,104 @@ export const OTHER_STATUS = "Other";
 
 export const CURRENT_STATUS_OPTIONS = [...STUDENT_STATUSES, OTHER_STATUS];
 
-/**
- * TODO PANITIA — tiga nilai di bawah masih placeholder.
- * Ganti begitu tanggal, jam, dan lokasi sudah pasti. Nilainya otomatis
- * dipakai di halaman pendaftaran maupun di layar konfirmasi.
- */
-export const roadshowEventDetails = {
-  date: "To be announced",
-  time: "To be announced",
-  venue: "To be announced",
-};
+/** Dipakai untuk field yang belum diumumkan panitia. */
+export const TBA = "To be announced";
+
+export interface RoadshowAgenda {
+  /** Bagian URL: /registration/campus-roadshow/<slug> */
+  slug: string;
+  campus: string;
+  /** Singkatan kampus, dipakai sebagai monogram kalau logo belum ada. */
+  campusShort: string;
+  /**
+   * Path logo kampus di folder public, mis. "/logos/itb.png".
+   * Biarkan kosong kalau berkasnya belum ada — otomatis diganti
+   * monogram inisial kampus. Lihat public/logos/README.md.
+   */
+  logo: string;
+  /** Judul talkshow. Isi TBA kalau temanya belum ditentukan. */
+  title: string;
+  subtitle: string;
+  /** Paragraf penjelasan. Boleh kosong kalau materinya belum ada. */
+  paragraphs: string[];
+  date: string;
+  time: string;
+  venue: string;
+  /** false = kartu tampil sebagai "Coming Soon", tanpa halaman & formulir. */
+  registrationOpen: boolean;
+  /** Link undangan WhatsApp Community khusus agenda ini. */
+  whatsappCommunityUrl: string;
+}
 
 /**
- * TODO PANITIA — tempel link undangan WhatsApp Community di sini.
- * Selama masih kosong, halaman konfirmasi menampilkan catatan bahwa
- * link akan dikirim lewat email, bukan tombol yang mengarah ke mana-mana.
+ * DAFTAR AGENDA CAMPUS ROADSHOW
+ *
+ * Untuk menambah kampus baru: salin salah satu objek di bawah, ganti
+ * slug/campus/logo/tema, lalu set registrationOpen sesuai kesiapan.
+ * Halaman penjelasan dan formulirnya terbentuk otomatis.
  */
-export const whatsappCommunityUrl = "";
+export const roadshowAgendas: RoadshowAgenda[] = [
+  {
+    slug: "itb",
+    campus: "Institut Teknologi Bandung",
+    campusShort: "ITB",
+    logo: "",
+    title: "Space Above, Power Below: Rooftop Solar PV in Cities",
+    subtitle: "From Idle Rooftops to Urban Power: Scaling Solar PV Across Indonesian Cities",
+    paragraphs: [
+      "Green Impact Festival 2026 presents the Campus Roadshow at Institut Teknologi Bandung, an interactive talkshow exploring the potential of rooftop solar PV in Indonesian cities.",
+      "Through insights from academic and industry experts, participants will explore rooftop solar implementation, urban energy readiness, project development, and the role of youth in accelerating Indonesia's clean energy transition.",
+    ],
+    date: TBA,
+    time: TBA,
+    venue: TBA,
+    registrationOpen: true,
+    whatsappCommunityUrl: "",
+  },
+  {
+    slug: "undip",
+    campus: "Universitas Diponegoro",
+    campusShort: "UNDIP",
+    logo: "",
+    title: TBA,
+    subtitle: "Tema talkshow akan diumumkan panitia",
+    paragraphs: [],
+    date: TBA,
+    time: TBA,
+    venue: TBA,
+    registrationOpen: true,
+    whatsappCommunityUrl: "",
+  },
+  {
+    slug: "coming-soon",
+    campus: "Kampus Berikutnya",
+    campusShort: "GIF",
+    logo: "",
+    title: TBA,
+    subtitle: "Kampus tujuan berikutnya akan diumumkan",
+    paragraphs: [],
+    date: TBA,
+    time: TBA,
+    venue: TBA,
+    registrationOpen: false,
+    whatsappCommunityUrl: "",
+  },
+];
+
+export function findAgenda(slug: string): RoadshowAgenda | undefined {
+  return roadshowAgendas.find((agenda) => agenda.slug === slug);
+}
+
+/** Hanya agenda yang pendaftarannya sudah dibuka. */
+export const openAgendas = roadshowAgendas.filter((agenda) => agenda.registrationOpen);
 
 export const roadshowInfo = {
   code: "Campus Roadshow",
-  campus: "Institut Teknologi Bandung",
-  title: "Space Above, Power Below: Rooftop Solar PV in Cities",
-  subtitle: "From Idle Rooftops to Urban Power: Scaling Solar PV Across Indonesian Cities",
-  paragraphs: [
-    "Green Impact Festival 2026 presents the Campus Roadshow at Institut Teknologi Bandung, an interactive talkshow exploring the potential of rooftop solar PV in Indonesian cities.",
-    "Through insights from academic and industry experts, participants will explore rooftop solar implementation, urban energy readiness, project development, and the role of youth in accelerating Indonesia's clean energy transition.",
-  ],
+  intro:
+    "Campus Roadshow Green Impact Festival 2026 adalah rangkaian kunjungan ke berbagai kampus di Indonesia. Setiap kampus punya tema talkshow dan jadwal sendiri, jadi pendaftarannya dibuka terpisah per agenda.",
   price: "Free Registration",
   formIntro: "Please fill in the registration form below with accurate information.",
   ctaLabel: "Register Now",
-};
-
-/** Teks yang tampil setelah pendaftaran berhasil dikirim. */
-export const roadshowSuccess = {
-  heading: "Registration Successful! 🎉",
-  thanks:
-    "Thank you for registering for the Green Impact Festival 2026 Campus Roadshow at Institut Teknologi Bandung!",
-  recorded: "Your registration has been successfully recorded.",
-  followUp:
-    "Further event information and important updates will be sent to your registered email address and WhatsApp community.",
-  communityHeading: "📢 Don't miss any updates!",
-  communityInvite:
-    "Please join the GIF Flagship Campus Roadshow ITB WhatsApp Community through the link below:",
-  communityPurpose:
-    "The WhatsApp Community will be used to share important announcements, reminders, and event-related information leading up to the roadshow.",
-  communityReminder: "Please make sure to join the community after completing your registration.",
-  closing: "See you at the GIF 2026 Campus Roadshow!",
 };
 
 export const roadshowFormFields: FormField[] = [
@@ -137,3 +188,20 @@ export const roadshowFormFields: FormField[] = [
     ],
   },
 ];
+
+/** Teks konfirmasi setelah pendaftaran berhasil, disesuaikan per kampus. */
+export function roadshowSuccessCopy(agenda: RoadshowAgenda) {
+  return {
+    heading: "Registration Successful! 🎉",
+    thanks: `Thank you for registering for the Green Impact Festival 2026 Campus Roadshow at ${agenda.campus}!`,
+    recorded: "Your registration has been successfully recorded.",
+    followUp:
+      "Further event information and important updates will be sent to your registered email address and WhatsApp community.",
+    communityHeading: "📢 Don't miss any updates!",
+    communityInvite: `Please join the GIF Campus Roadshow ${agenda.campusShort} WhatsApp Community through the link below:`,
+    communityPurpose:
+      "The WhatsApp Community will be used to share important announcements, reminders, and event-related information leading up to the roadshow.",
+    communityReminder: "Please make sure to join the community after completing your registration.",
+    closing: "See you at the GIF 2026 Campus Roadshow!",
+  };
+}

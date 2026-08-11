@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
-import RegisterCta from "@/components/RegisterCta";
+import Link from "next/link";
+import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import CampusLogo from "@/components/CampusLogo";
 import Reveal from "@/components/Reveal";
-import { roadshowInfo, roadshowEventDetails } from "@/data/campusRoadshow";
+import { roadshowAgendas, roadshowInfo } from "@/data/campusRoadshow";
 
 export const metadata: Metadata = {
   title: "Campus Roadshow",
-  description: roadshowInfo.paragraphs[0],
+  description: roadshowInfo.intro,
 };
 
-const EVENT_ROWS = [
-  { icon: "📅", label: "Date", value: roadshowEventDetails.date },
-  { icon: "🕒", label: "Time", value: roadshowEventDetails.time },
-  { icon: "📍", label: "Venue", value: roadshowEventDetails.venue },
-  { icon: "🎟️", label: "Ticket", value: roadshowInfo.price },
-];
-
-export default function CampusRoadshowRegistration() {
+export default function CampusRoadshowIndex() {
   return (
-    <section className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
+    <section className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
       <div
         className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
         aria-hidden="true"
@@ -31,44 +26,90 @@ export default function CampusRoadshowRegistration() {
       </div>
 
       <Reveal>
-        <SectionHeading title={roadshowInfo.code} />
-        <p className="mt-3 text-sm font-medium text-mint-400">{roadshowInfo.campus}</p>
+        <SectionHeading title="Campus Roadshow" />
+        <p className="mt-6 max-w-3xl text-mint-200/80 leading-relaxed">{roadshowInfo.intro}</p>
       </Reveal>
 
-      {/* PENJELASAN ACARA */}
-      <Reveal delay={110} className="mt-8 block">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-          {roadshowInfo.title}
-        </h2>
-        <p className="mt-3 text-mint-300 font-medium">{roadshowInfo.subtitle}</p>
-
-        <div className="mt-6 space-y-4 text-mint-200/80 leading-relaxed">
-          {roadshowInfo.paragraphs.map((text) => (
-            <p key={text}>{text}</p>
-          ))}
-        </div>
+      <Reveal delay={100} className="mt-10 block">
+        <p className="font-semibold text-mint-100">Pilih Agenda</p>
+        <p className="mt-1 text-sm text-mint-200/50">
+          Setiap kampus punya formulir pendaftaran sendiri. Pilih agenda yang ingin kamu hadiri.
+        </p>
       </Reveal>
 
-      <Reveal delay={160} direction="zoom" className="mt-8 block">
-        <dl className="grid gap-4 rounded-3xl border border-lime-300/25 bg-night-900 p-6 sm:grid-cols-2 lg:grid-cols-4">
-          {EVENT_ROWS.map((row) => (
-            <div key={row.label}>
-              <dt className="text-xs uppercase tracking-wide text-mint-200/40">
-                {row.icon} {row.label}
-              </dt>
-              <dd className="mt-1 text-sm font-semibold text-mint-100">{row.value}</dd>
+      <div className="mt-8 space-y-4">
+        {roadshowAgendas.map((agenda, i) => {
+          const card = (
+            <div
+              className={`flex flex-col gap-5 rounded-3xl border p-6 transition-all duration-300 sm:flex-row sm:items-center sm:gap-6 ${
+                agenda.registrationOpen
+                  ? "card-hover border-lime-300/30 bg-night-900 hover:border-mint-400/60"
+                  : "border-white/10 bg-night-900/50"
+              }`}
+            >
+              <CampusLogo
+                logo={agenda.logo}
+                campus={agenda.campus}
+                campusShort={agenda.campusShort}
+                size="lg"
+              />
+
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-3">
+                  <p className="text-lg font-bold text-white">{agenda.campus}</p>
+                  {agenda.registrationOpen ? (
+                    <span className="rounded-full border border-mint-400/40 bg-mint-400/10 px-3 py-0.5 text-xs font-medium text-mint-300">
+                      Registration Open
+                    </span>
+                  ) : (
+                    <span className="rounded-full border border-white/15 px-3 py-0.5 text-xs font-medium text-mint-200/40">
+                      Coming Soon
+                    </span>
+                  )}
+                </div>
+
+                <p className="mt-2 text-sm text-mint-300">{agenda.title}</p>
+
+                <div className="mt-3 flex flex-wrap gap-4 text-xs text-mint-200/50">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar size={14} className="text-mint-400" /> {agenda.date}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <MapPin size={14} className="text-mint-400" /> {agenda.venue}
+                  </span>
+                </div>
+              </div>
+
+              {agenda.registrationOpen && (
+                <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium text-mint-400">
+                  Lihat detail
+                  <ArrowRight
+                    size={16}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
+                </span>
+              )}
             </div>
-          ))}
-        </dl>
-      </Reveal>
+          );
 
-      <Reveal>
-        <RegisterCta
-          href="/registration/campus-roadshow/form"
-          label={roadshowInfo.ctaLabel}
-          note={roadshowInfo.formIntro}
-        />
-      </Reveal>
+          return (
+            <Reveal key={agenda.slug} delay={i * 90}>
+              {agenda.registrationOpen ? (
+                <Link href={`/registration/campus-roadshow/${agenda.slug}`} className="group block">
+                  {card}
+                </Link>
+              ) : (
+                card
+              )}
+            </Reveal>
+          );
+        })}
+      </div>
+
+      <p className="mt-8 text-xs text-mint-200/40">
+        Jadwal, lokasi, dan tema tiap kampus diumumkan bertahap lewat Instagram
+        @greenimpactfestival. Agenda bertanda Coming Soon belum membuka pendaftaran.
+      </p>
     </section>
   );
 }

@@ -15,15 +15,15 @@ INSERT INTO `necsc_registrations`
    `ktm_file`, `twibbon_proof`, `follow_proof`, `abstract_file`, `source`, `status`)
 VALUES
   ('Peserta Contoh Satu', 'Universitas Contoh', 'peserta1@example.com', '081200000001',
-   'Mahasiswa (University)', 'Renewable Energy for Community',
+   'University Student', 'Renewable Energy for Community',
    'ktm-satu.jpg', 'twibbon-satu.jpg', 'follow-satu.jpg', 'abstrak-satu.pdf',
    'Social Media GIF and SRE', 'diverifikasi'),
   ('Peserta Contoh Dua', 'Institut Contoh', 'peserta2@example.com', '081200000002',
-   'Mahasiswa (University)', 'Circular & Blue Economy',
+   'University Student', 'Circular & Blue Economy',
    'ktm-dua.jpg', 'twibbon-dua.jpg', 'follow-dua.jpg', 'abstrak-dua.pdf',
    'Campus Roadshow GIF 2026', 'baru'),
   ('Peserta Contoh Tiga', 'SMA Contoh 1', 'peserta3@example.com', '081200000003',
-   'SMA / MA / SMK sederajat', 'Sustainable Agriculture',
+   'High School Student (SMA / MA / SMK)', 'Sustainable Agriculture',
    'ktm-tiga.jpg', 'twibbon-tiga.jpg', 'follow-tiga.jpg', 'abstrak-tiga.pdf',
    'Friends or family', 'baru')
 ON DUPLICATE KEY UPDATE `updated_at` = CURRENT_TIMESTAMP;
@@ -45,16 +45,16 @@ ON DUPLICATE KEY UPDATE `updated_at` = CURRENT_TIMESTAMP;
 
 -- Campus Roadshow -----------------------------------------------------
 INSERT INTO `campus_roadshow_registrations`
-  (`full_name`, `email`, `whatsapp`, `current_status`, `other_status`,
+  (`campus`, `full_name`, `email`, `whatsapp`, `current_status`, `other_status`,
    `institution`, `major`, `source`, `status`)
 VALUES
-  ('Mahasiswa Contoh Satu', 'roadshow1@example.com', '081400000001',
+  ('itb', 'Mahasiswa Contoh Satu', 'roadshow1@example.com', '081400000001',
    'Undergraduate Student', NULL, 'Universitas Contoh', 'Teknik Lingkungan',
    'Social Media GIF and SRE', 'baru'),
-  ('Pelajar Contoh Dua', 'roadshow2@example.com', '081400000002',
+  ('itb', 'Pelajar Contoh Dua', 'roadshow2@example.com', '081400000002',
    'High School Student', NULL, 'SMA Contoh 1', 'IPA',
    'Kampus atau organisasi kemahasiswaan', 'dikonfirmasi'),
-  ('Profesional Contoh Tiga', 'roadshow3@example.com', '081400000003',
+  ('undip', 'Profesional Contoh Tiga', 'roadshow3@example.com', '081400000003',
    'Other', 'Content Strategist di PT Contoh Energi', NULL, NULL,
    'Media Partner of GIF', 'baru')
 ON DUPLICATE KEY UPDATE `updated_at` = CURRENT_TIMESTAMP;

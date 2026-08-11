@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { ResultSetHeader } from "mysql2";
 import { getPool, describeDbError, isDuplicateError } from "@/lib/db";
-import { STUDENT_STATUSES } from "@/data/campusRoadshow";
+import { STUDENT_STATUSES, findAgenda } from "@/data/campusRoadshow";
 
 /**
  * Endpoint penerima semua form pendaftaran (NECSC, Youth Ambassador,
@@ -81,6 +81,7 @@ const PROGRAM_CONFIG: Record<
   "campus-roadshow": {
     table: "campus_roadshow_registrations",
     columns: {
+      campus: "campus",
       fullName: "full_name",
       email: "email",
       whatsapp: "whatsapp",
@@ -90,7 +91,7 @@ const PROGRAM_CONFIG: Record<
       major: "major",
       source: "source",
     },
-    required: ["fullName", "email", "whatsapp", "currentStatus"],
+    required: ["campus", "fullName", "email", "whatsapp", "currentStatus"],
     requiredIf: [
       {
         field: "otherStatus",
@@ -200,6 +201,17 @@ export async function POST(request: Request) {
       );
     }
     values.whatsapp = whatsapp;
+  }
+
+  // Campus Roadshow: pastikan agendanya benar-benar ada dan sedang dibuka.
+  if (program === "campus-roadshow") {
+    const agenda = findAgenda(String(values.campus ?? ""));
+    if (!agenda || !agenda.registrationOpen) {
+      return NextResponse.json(
+        { ok: false, error: "Agenda Campus Roadshow tidak dikenal atau belum dibuka." },
+        { status: 400 },
+      );
+    }
   }
 
   // Nomor telepon biasa: lebih longgar (boleh +62), asal jumlah digitnya wajar.

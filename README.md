@@ -82,8 +82,9 @@ Panduan lengkap ada di [database/README.md](database/README.md).
 
 ## Peta halaman
 
-Hasil build: **17 route** — 14 halaman statis, 1 halaman 404, dan 2 API endpoint. Ditambah
-2 redirect dari URL struktur lama.
+Hasil build: **18 entri route** yang menghasilkan **20 halaman**, karena dua route Campus
+Roadshow bersifat dinamis dan dibangun satu halaman per kampus lewat `generateStaticParams`.
+Ditambah 2 redirect dari URL struktur lama.
 
 | Route | Jenis | Fungsi |
 | --- | --- | --- |
@@ -97,8 +98,9 @@ Hasil build: **17 route** — 14 halaman statis, 1 halaman 404, dan 2 API endpoi
 | `/registration/necsc/form` | Statis | Formulir pendaftaran NECSC |
 | `/registration/youth-ambassador` | Statis | Penjelasan program Youth Ambassador |
 | `/registration/youth-ambassador/form` | Statis | Formulir Youth Ambassador |
-| `/registration/campus-roadshow` | Statis | Penjelasan Campus Roadshow ITB |
-| `/registration/campus-roadshow/form` | Statis | Formulir Campus Roadshow |
+| `/registration/campus-roadshow` | Statis | Daftar seluruh agenda roadshow per kampus |
+| `/registration/campus-roadshow/[campus]` | SSG | Penjelasan agenda satu kampus |
+| `/registration/campus-roadshow/[campus]/form` | SSG | Formulir agenda kampus tersebut |
 | `/registration/seminar` | Statis | Penjelasan seminar utama + daftar sesi |
 | `/registration/seminar/form` | Statis | Formulir seminar |
 | `/api/registration` | Dinamis | `POST` penerima seluruh formulir |
@@ -173,7 +175,7 @@ abstrak" di NECSC).
 | --- | --- | --- |
 | **NECSC** | Timeline 6 tahap, total hadiah, 4 subtema, mekanisme 2 tahap, syarat peserta | Nama, institusi, email, telepon, kategori, subtema, 4 berkas unggahan, sumber informasi |
 | **Youth Ambassador** | 3 subtema, mekanisme, 4 KPI program, benefit, format video | Nama, institusi, email, telepon, subtema, 2 bukti, 2 link Reels, sumber informasi |
-| **Campus Roadshow** | Judul talkshow, deskripsi acara, tanggal/jam/venue, keterangan gratis | Nama, email, WhatsApp, status, **field bersyarat**, sumber informasi |
+| **Campus Roadshow** | Daftar agenda per kampus; tiap agenda punya judul talkshow, tanggal/jam/venue sendiri | Nama, email, WhatsApp, status, **field bersyarat**, sumber informasi |
 | **Seminar** | Kartu acara, deskripsi, benefit, daftar seluruh sesi | Nama, email, nomor handphone, asal instansi |
 
 ### Pesan konfirmasi khusus
@@ -536,8 +538,9 @@ Semuanya terkumpul di folder `data/` dan sudah ditandai komentar `TODO`.
 | Tanggal acara utama | `eventInfo` di [`data/agenda.ts`](data/agenda.ts) |
 | Timeline NECSC dengan tanggal presisi (kini masih per bulan) | [`data/necsc.ts`](data/necsc.ts) |
 | Jawaban FAQ resmi (kini masih draf) | [`data/faq.ts`](data/faq.ts) |
-| Tanggal, jam, venue Campus Roadshow | `roadshowEventDetails` di [`data/campusRoadshow.ts`](data/campusRoadshow.ts) |
-| Link WhatsApp Community roadshow | `whatsappCommunityUrl` di file yang sama |
+| Tanggal, jam, venue, tema tiap agenda roadshow | `roadshowAgendas` di [`data/campusRoadshow.ts`](data/campusRoadshow.ts) |
+| Link WhatsApp Community tiap agenda roadshow | `whatsappCommunityUrl` per agenda di file yang sama |
+| Logo kampus | Taruh berkas di [`public/logos/`](public/logos/), lalu isi `logo` per agenda |
 | Tanggal seminar | `seminarEventDetails` di [`data/seminar.ts`](data/seminar.ts) |
 | Link WhatsApp Community GIF 2026 | `seminarCommunityUrl` di file yang sama |
 
@@ -558,6 +561,5 @@ menjangkau MySQL lokal — dibutuhkan database yang dapat diakses publik.
 **Belum ada halaman admin.** Panitia melihat dan mengelola data lewat phpMyAdmin, dibantu kumpulan
 query siap pakai di [`database/03-queries.sql`](database/03-queries.sql).
 
-**Campus Roadshow masih untuk satu kampus.** Isi halamannya khusus ITB. Kalau roadshow diadakan di
-kampus lain, struktur halaman perlu dibuat dinamis agar tiap kampus punya jadwal dan grup
-WhatsApp sendiri.
+**Logo kampus belum tersedia.** Selama berkas logo belum ditaruh di `public/logos/`, situs
+menampilkan monogram inisial kampus. Lihat [`public/logos/README.md`](public/logos/README.md).

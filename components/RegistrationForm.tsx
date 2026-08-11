@@ -34,12 +34,18 @@ export default function RegistrationForm({
   fields,
   submitLabel = "Submit",
   program = "general",
+  extraValues,
   successContent,
 }: {
   fields: FormField[];
   submitLabel?: string;
   /** Dipakai API route untuk membedakan asal pendaftaran (necsc, youth-ambassador, dst). */
   program?: string;
+  /**
+   * Nilai tambahan yang ikut dikirim tapi tidak ditampilkan sebagai input,
+   * mis. slug kampus pada formulir Campus Roadshow.
+   */
+  extraValues?: Record<string, string>;
   /** Tampilan pengganti pesan sukses bawaan, mis. instruksi khusus per program. */
   successContent?: React.ReactNode;
 }) {
@@ -60,7 +66,7 @@ export default function RegistrationForm({
 
     // Hanya kirim field yang sedang tampil, supaya jawaban lama dari cabang
     // pilihan yang sudah ditinggalkan tidak ikut terkirim.
-    const payload: Record<string, string> = {};
+    const payload: Record<string, string> = { ...extraValues };
     for (const field of visibleFields) {
       const value = values[field.name];
       if (value !== undefined && value !== "") payload[field.name] = value;
