@@ -121,10 +121,11 @@ const PROGRAM_CONFIG: Record<
     columns: {
       name: "name",
       email: "email",
+      phone: "phone",
       partnershipType: "partnership_type",
       description: "description",
     },
-    required: ["name", "email"],
+    required: ["name", "email", "phone", "partnershipType"],
   },
 };
 

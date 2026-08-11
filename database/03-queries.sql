@@ -146,9 +146,21 @@ SELECT `institution`, COUNT(*) AS `jumlah`
 -- PARTNERSHIP
 -- ---------------------------------------------------------------------
 
-SELECT `id`, `name`, `email`, `partnership_type`, `status`, `created_at`
+SELECT `id`               AS `No`,
+       `name`             AS `Nama / Brand`,
+       `email`            AS `Email`,
+       `phone`            AS `No. HP`,
+       `partnership_type` AS `Jenis Kerja Sama`,
+       `status`           AS `Status`,
+       `created_at`       AS `Waktu Masuk`
   FROM `partnership_inquiries`
  ORDER BY `created_at` DESC;
+
+-- Kontak yang belum dihubungi panitia
+SELECT `name`, `phone`, `email`, `partnership_type`
+  FROM `partnership_inquiries`
+ WHERE `status` = 'baru'
+ ORDER BY `created_at`;
 
 
 -- ---------------------------------------------------------------------

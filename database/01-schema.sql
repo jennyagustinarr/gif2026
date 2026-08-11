@@ -172,6 +172,7 @@ CREATE TABLE IF NOT EXISTS `partnership_inquiries` (
   `id`                INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name`              VARCHAR(200) NOT NULL COMMENT 'Nama / brand',
   `email`             VARCHAR(150) NOT NULL,
+  `phone`             VARCHAR(30)  NULL COMMENT 'Nomor handphone / WhatsApp PIC',
   `partnership_type`  VARCHAR(60)  NULL COMMENT 'sponsorship | community-partner | media-partner | other',
   `description`       TEXT         NULL,
   `status`            ENUM('baru','dihubungi','deal','ditolak') NOT NULL DEFAULT 'baru',

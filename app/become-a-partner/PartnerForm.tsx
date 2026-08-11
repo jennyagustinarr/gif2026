@@ -18,6 +18,7 @@ const TYPE_ICONS: Record<string, typeof Coins> = {
 export default function PartnerForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [partnershipType, setPartnershipType] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -34,7 +35,7 @@ export default function PartnerForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           program: "partnership",
-          values: { name, email, partnershipType, description },
+          values: { name, email, phone, partnershipType, description },
         }),
       });
 
@@ -181,6 +182,24 @@ export default function PartnerForm() {
             placeholder="your.email@example.com"
             className={inputClass}
           />
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-sm font-semibold text-mint-100 mb-3">
+            Nomor Handphone <span className="text-red-400">*</span>
+          </label>
+          <input
+            id="phone"
+            required
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="081234567890"
+            className={inputClass}
+          />
+          <p className="mt-2 text-xs text-mint-200/40">
+            Nomor yang bisa dihubungi lewat WhatsApp untuk pembahasan kerja sama.
+          </p>
         </div>
 
         <div>

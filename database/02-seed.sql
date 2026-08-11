@@ -69,11 +69,11 @@ ON DUPLICATE KEY UPDATE `updated_at` = CURRENT_TIMESTAMP;
 
 -- Partnership ---------------------------------------------------------
 INSERT INTO `partnership_inquiries`
-  (`name`, `email`, `partnership_type`, `description`, `status`)
+  (`name`, `email`, `phone`, `partnership_type`, `description`, `status`)
 VALUES
-  ('PT Contoh Energi', 'partner1@example.com', 'sponsorship',
+  ('PT Contoh Energi', 'partner1@example.com', '081500000001', 'sponsorship',
    'Tertarik menjadi sponsor utama dan mengisi sesi talkshow.', 'dihubungi'),
-  ('Media Contoh Nasional', 'partner2@example.com', 'media-partner',
+  ('Media Contoh Nasional', 'partner2@example.com', '081500000002', 'media-partner',
    'Menawarkan liputan pra-acara dan hari-H.', 'baru');
 
 -- Cek hasil -----------------------------------------------------------

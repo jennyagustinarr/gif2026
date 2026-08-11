@@ -9,6 +9,7 @@ Semua yang berkaitan dengan database ada di folder ini. Target: **MySQL / MariaD
 | `03-queries.sql` | Kumpulan query rekap siap pakai untuk panitia. Jalankan per bagian, bukan di-import. |
 | `04-reset.sql` | **Menghapus seluruh database.** Hanya untuk tahap pengembangan. |
 | `05-migration-campus-roadshow.sql` | Migrasi untuk database yang di-import sebelum program Campus Roadshow ada. Tidak menghapus data. |
+| `06-migration-partner-phone.sql` | Migrasi penambahan kolom `phone` di `partnership_inquiries`. Tidak menghapus data. |
 | `er-diagram.md` | Diagram relasi antar tabel. |
 
 Nama database: **`green_impact_festival`**

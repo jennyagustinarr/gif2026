@@ -20,7 +20,7 @@ export const faqs = [
   {
     question: "I have special needs, who can I contact?",
     answer:
-      "Silakan hubungi panitia lewat email greenimpactfestival@sre.co.id atau WhatsApp ke +62 813-1756-8734 supaya kami bisa membantu kebutuhan khususmu selama acara berlangsung.",
+      "Silakan hubungi panitia lewat email greenimpactfestival@sre.co.id atau WhatsApp ke +62 821-7962-0055 supaya kami bisa membantu kebutuhan khususmu selama acara berlangsung.",
   },
 ];
 
@@ -29,6 +29,6 @@ export const contactInfo = {
   instagram: "greenimpactfestival",
   instagramUrl: "https://instagram.com/greenimpactfestival",
   email: "greenimpactfestival@sre.co.id",
-  whatsappLabel: "+62 813-1756-8734 (Alya Selyn)",
-  whatsappUrl: "https://wa.me/6281317568734",
+  whatsappLabel: "+62 821-7962-0055 (Abiyyu)",
+  whatsappUrl: "https://wa.me/6282179620055",
 };
