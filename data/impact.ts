@@ -36,9 +36,7 @@ export const impactIntro = {
 /**
  * Riwayat penyelenggaraan, diurutkan dari yang terbaru.
  *
- * TODO PANITIA:
- *  - Isi array `photos` setelah menaruh berkas di public/impact/
- *  - Lengkapi bagian bertanda TBA pada entri 2024
+ * TODO PANITIA: isi array `photos` setelah menaruh berkas di public/impact/
  */
 export const impactYears: ImpactYear[] = [
   {
@@ -68,17 +66,23 @@ export const impactYears: ImpactYear[] = [
     year: "2024",
     title: "Green Impact Days 2024",
     date: "29 - 30 April 2024",
-    venue: "Sabuga, Bandung",
+    venue: "Sabuga ITB, Bandung",
     theme: "Menuju Ketahanan Pangan, Air, dan Energi Indonesia",
     highlights: [
-      "Rangkaian acara dua hari di Sabuga, Bandung",
-      "Sesi talkshow dan diskusi lintas sektor",
-      "Penghargaan Green Impact Day bagi tokoh dan mitra",
+      "Road to GID (Maret - April)",
+      "Aksi Penanaman Mangrove",
+      "Seminar industri hijau",
+      "Acara puncak di Sabuga ITB: National Conference, Leadership Talk, Fireside Chat, Green Job Fair, Awarding NECSC, dan UMKM Exhibition",
     ],
-    // TODO PANITIA: lengkapi capaian resmi tahun 2024.
-    achievements: ["Partisipasi mahasiswa dari berbagai kampus di Indonesia"],
-    // TODO PANITIA: ganti dengan angka resmi tahun 2024.
-    stats: [{ value: 2, label: "Hari penyelenggaraan" }],
+    achievements: [
+      'Peluncuran buku riset "Green Jobs Outlook: Peta Karier Hijau Anak Muda"',
+      "Dihadiri dan diapresiasi Menteri LHK Prof. Dr. Siti Nurbaya, yang menyerahkan langsung piala NECSC",
+    ],
+    stats: [
+      { value: 1000, suffix: "+", label: "Partisipan total" },
+      { value: 6, label: "Agenda acara puncak" },
+      { value: 2, label: "Hari acara puncak" },
+    ],
     photos: [],
   },
 ];
