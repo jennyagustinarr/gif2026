@@ -22,8 +22,9 @@ export interface ImpactYear {
   achievements: string[];
   stats: ImpactStat[];
   /**
-   * Foto dokumentasi. Biarkan array kosong kalau berkasnya belum ada —
-   * otomatis diganti kotak placeholder. Lihat public/impact/README.md.
+   * Foto dokumentasi. Berkas yang belum ditaruh di public/impact/ otomatis
+   * dilewati dan diganti kotak placeholder, jadi entri di bawah aman
+   * didaftarkan lebih dulu. Lihat public/impact/README.md.
    */
   photos: ImpactPhoto[];
 }
@@ -36,7 +37,8 @@ export const impactIntro = {
 /**
  * Riwayat penyelenggaraan, diurutkan dari yang terbaru.
  *
- * TODO PANITIA: isi array `photos` setelah menaruh berkas di public/impact/
+ * TODO PANITIA: taruh berkas foto di public/impact/ dengan nama yang sudah
+ * tertulis pada `photos` di bawah — tidak perlu menyunting berkas ini lagi.
  */
 export const impactYears: ImpactYear[] = [
   {
@@ -60,7 +62,16 @@ export const impactYears: ImpactYear[] = [
       { value: 50, label: "Karya NECSC terbaik" },
       { value: 4, label: "Sesi talkshow" },
     ],
-    photos: [],
+    photos: [
+      {
+        src: "/impact/2025-1.jpg",
+        alt: "Foto bersama tamu undangan dan ratusan peserta Green Impact Festival 2025 di Djakarta Theater",
+      },
+      {
+        src: "/impact/2025-2.jpg",
+        alt: "Para pemenang NECSC dan Digital Ambassador 2025 berbaris di panggung sambil memegang papan hadiah",
+      },
+    ],
   },
   {
     year: "2024",
@@ -83,6 +94,15 @@ export const impactYears: ImpactYear[] = [
       { value: 6, label: "Agenda acara puncak" },
       { value: 2, label: "Hari acara puncak" },
     ],
-    photos: [],
+    photos: [
+      {
+        src: "/impact/2024-1.jpg",
+        alt: "Penyerahan cendera mata dan buku Green Impact Days 2024 di atas panggung Sabuga ITB",
+      },
+      {
+        src: "/impact/2024-2.jpg",
+        alt: "Foto bersama ratusan peserta Green Impact Days 2024 memenuhi ruang Sabuga ITB",
+      },
+    ],
   },
 ];

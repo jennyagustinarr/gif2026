@@ -17,6 +17,10 @@
 .DS_Store
 *.pem
 
+# foto mentah dari kamera (ukurannya puluhan MB) — versi terkompresnya
+# sudah ada di public/impact/, jadi yang asli tidak perlu ikut ke GitHub
+/pictures
+
 # debug
 npm-debug.log*
 yarn-debug.log*

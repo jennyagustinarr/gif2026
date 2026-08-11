@@ -1,35 +1,37 @@
 # Foto Dokumentasi "Our Impact"
 
-Foto untuk linimasa kilas balik di halaman **About Us**. Selama folder ini
-kosong, situs menampilkan kotak placeholder bertuliskan "Foto menyusul" —
-tata letaknya tetap rapi, tinggal diganti kapan saja.
+Foto untuk linimasa kilas balik di halaman **About Us**. Isi folder saat ini:
 
-## Cara menambahkan
-
-**1. Simpan berkas foto di folder ini** dengan nama berikut:
-
-| Tahun | Nama berkas | Isi |
+| Berkas | Isi | Sumber asli |
 | --- | --- | --- |
-| 2025 | `2025-1.jpg` | Foto bersama di Djakarta Theater |
-| 2025 | `2025-2.jpg` | Penyerahan hadiah pemenang NECSC di panggung |
-| 2024 | `2024-1.jpg` | Penyerahan penghargaan Green Impact Days |
-| 2024 | `2024-2.jpg` | Foto bersama peserta di Sabuga |
+| `2025-1.jpg` | Foto bersama tamu undangan dan peserta di Djakarta Theater | `68 - GIF 25 Vice President & Awarding.jpg` |
+| `2025-2.jpg` | Pemenang NECSC & Digital Ambassador di panggung | `50 - GIF 25 Vice President & Awarding.jpg` |
+| `2024-1.jpg` | Penyerahan cendera mata dan buku di panggung Sabuga ITB | `DSC07828.JPG` |
+| `2024-2.jpg` | Foto bersama peserta memenuhi ruang Sabuga ITB | `DSC07971.JPG` |
 
-**2. Daftarkan di `data/impact.ts`** pada properti `photos` tahun yang sesuai:
+Berkas asli dari kamera disimpan di folder `pictures/` pada akar proyek dan
+sengaja **tidak** ikut ke GitHub (ukurannya 3–11 MB per foto).
+
+## Cara mengganti atau menambah
+
+Simpan berkas di folder ini dengan nama `2024-1`, `2024-2`, `2025-1`, atau
+`2025-2`. Ekstensinya bebas — `.jpg`, `.jpeg`, `.png`, `.webp` — situs mencari
+sendiri berkas mana yang ada, jadi **tidak perlu menyunting `data/impact.ts`**
+kecuali ingin mengubah teks `alt`-nya.
+
+Kalau salah satu berkas dihapus, hanya slot itu yang berubah jadi kotak
+placeholder; sisanya tetap tampil.
+
+### Kalau ingin lebih dari dua foto per tahun
+
+Tambahkan item baru pada array `photos` tahun bersangkutan di
+`data/impact.ts`, lalu taruh berkasnya di sini:
 
 ```ts
-{
-  year: "2025",
-  ...
-  photos: [
-    { src: "/impact/2025-1.jpg", alt: "Foto bersama Green Impact Festival 2025 di Djakarta Theater" },
-    { src: "/impact/2025-2.jpg", alt: "Penyerahan hadiah pemenang NECSC 2025" },
-  ],
-},
+{ src: "/impact/2025-3.jpg", alt: "Deskripsi singkat isi foto" },
 ```
 
-Foto ditampilkan dua per tahun. Kalau ingin lebih, tinggal tambah item di
-array — kolomnya otomatis menyesuaikan.
+Kolomnya menyesuaikan otomatis.
 
 ## Saran teknis
 

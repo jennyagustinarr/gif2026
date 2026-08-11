@@ -1,19 +1,48 @@
+import fs from "node:fs";
+import path from "node:path";
 import { CalendarDays, Camera, MapPin, Sparkles, Trophy } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import SectionIcon from "@/components/SectionIcon";
-import { impactIntro, impactYears, type ImpactYear } from "@/data/impact";
+import { impactIntro, impactYears, type ImpactPhoto, type ImpactYear } from "@/data/impact";
+
+const PHOTO_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+
+/**
+ * Mencocokkan daftar foto dengan berkas yang benar-benar ada di public/impact.
+ *
+ * Ekstensi pada data boleh berbeda dengan berkas aslinya — asal nama depannya
+ * sama (`2024-1`), .jpg/.jpeg/.png/.webp sama-sama dikenali. Foto yang
+ * berkasnya belum ditaruh dilewati, jadi yang muncul kotak placeholder alih-alih
+ * ikon gambar rusak.
+ */
+function resolvePhotos(photos: ImpactPhoto[]): ImpactPhoto[] {
+  const publicDir = path.join(process.cwd(), "public");
+
+  return photos.flatMap((photo) => {
+    const base = photo.src.replace(/\.[^./]+$/, "");
+    for (const ext of PHOTO_EXTENSIONS) {
+      if (fs.existsSync(path.join(publicDir, base + ext))) {
+        return [{ ...photo, src: base + ext }];
+      }
+    }
+    return [];
+  });
+}
 
 function PhotoStrip({ entry }: { entry: ImpactYear }) {
   // Selalu tampilkan dua kotak: foto asli kalau ada, placeholder kalau belum.
-  const slots = entry.photos.length > 0 ? entry.photos : [null, null];
+  const available = resolvePhotos(entry.photos);
+  const slots = available.length > 0 ? available : [null, null];
 
   return (
-    <div className="grid grid-cols-2 gap-3">
+    // Satu kolom penuh: foto grup ratusan orang tidak terbaca kalau dipepet
+    // jadi dua kolom sempit.
+    <div className="grid gap-3">
       {slots.map((photo, i) => (
         <div
           key={photo?.src ?? i}
-          className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-night-800"
+          className="group relative aspect-[3/2] overflow-hidden rounded-2xl border border-white/10 bg-night-800"
         >
           {photo ? (
             <img
