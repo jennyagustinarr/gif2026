@@ -483,9 +483,30 @@ Salin `.env.example` menjadi `.env.local`. Nilai bawaannya sudah cocok dengan XA
 | `DB_USER` | `root` | User MySQL |
 | `DB_PASSWORD` | *(kosong)* | Password MySQL |
 | `DB_NAME` | `green_impact_festival` | Nama database |
+| `DATABASE_URL` | *(kosong)* | Alternatif kelima variabel di atas, format `mysql://user:pass@host:3306/db`. Kalau diisi, nilainya menang |
+| `DB_SSL` | *(kosong)* | `true` (verifikasi sertifikat), `insecure` (tanpa verifikasi), atau kosong untuk XAMPP lokal |
 | `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | Base URL untuk metadata dan Open Graph |
 
 `.env.local` diabaikan git, jadi kredensial tidak ikut ter-push.
+
+### Deploy ke Vercel
+
+Situs sudah bisa di-deploy apa adanya — seluruh halaman tampil normal. Namun **formulir
+tidak akan bisa menyimpan** selama database masih berjalan di XAMPP lokal, karena server
+Vercel tidak dapat menjangkau komputermu. Endpoint `/api/health` akan melaporkannya.
+
+Untuk membuka pendaftaran sungguhan, siapkan MySQL yang dapat diakses publik (Railway,
+Aiven, Clever Cloud, dan sejenisnya), import `database/01-schema.sql` ke sana, lalu isi
+Environment Variables di Vercel:
+
+| Key | Value |
+| --- | --- |
+| `DATABASE_URL` | String koneksi dari penyedia |
+| `DB_SSL` | `true`, atau `insecure` kalau sertifikatnya ditolak |
+| `NEXT_PUBLIC_SITE_URL` | Domain situs, mis. `https://gif2026.vercel.app` |
+
+Setelah menyimpan variabel, jalankan **Redeploy** agar nilainya terbaca, lalu periksa
+`https://<domain>/api/health`.
 
 ### Redirect
 
