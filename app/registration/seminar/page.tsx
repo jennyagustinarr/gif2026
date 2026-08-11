@@ -59,7 +59,7 @@ export default function SeminarPage() {
 
       <Reveal delay={150} className="mt-8 block">
         <div className="card-hover rounded-2xl border border-lime-300/20 bg-night-900 p-6 hover:border-mint-400/40">
-          <p className="font-semibold text-mint-100 mb-3">Yang Kamu Dapat</p>
+          <p className="font-semibold text-mint-100 mb-3">Benefits</p>
           <ul className="space-y-1.5 text-sm text-mint-200/70 list-disc list-inside">
             {seminarInfo.benefits.map((b) => (
               <li key={b} className="transition-colors hover:text-mint-200">
@@ -72,7 +72,7 @@ export default function SeminarPage() {
 
       <div className="mt-14">
         <Reveal>
-          <p className="font-semibold text-mint-100 mb-4">Sesi yang akan berlangsung</p>
+          <p className="font-semibold text-mint-100 mb-4">Sessions</p>
         </Reveal>
         <div className="space-y-3">
           {agendaSessions.map((session, i) => (
@@ -96,7 +96,7 @@ export default function SeminarPage() {
       <Reveal>
         <RegisterCta
           href="/registration/seminar/form"
-          label="Daftar Seminar Sekarang"
+          label="Register for Seminar"
           note="Pendaftaran gratis. Informasi acara akan dikirim ke email yang kamu daftarkan."
         />
       </Reveal>

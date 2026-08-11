@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
  */
 export default function RegisterCta({
   href,
-  label = "Daftar Sekarang",
+  label = "Register Now",
   note,
 }: {
   href: string;
@@ -17,7 +17,7 @@ export default function RegisterCta({
 }) {
   return (
     <div className="mt-16 rounded-3xl border border-mint-400/30 bg-gradient-to-br from-mint-500/10 to-lime-300/5 p-8 text-center sm:p-10">
-      <p className="text-lg font-semibold text-mint-100">Siap bergabung?</p>
+      <p className="text-lg font-semibold text-mint-100">Ready to Join?</p>
       {note && <p className="mx-auto mt-2 max-w-xl text-sm text-mint-200/60">{note}</p>}
 
       <Link

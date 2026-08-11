@@ -27,7 +27,8 @@ export default function SeminarSuccess() {
           <p className="mt-4 rounded-xl border border-dashed border-mint-400/30 bg-mint-400/5 px-4 py-3 text-sm text-mint-200/60">
             Link WhatsApp Community akan dikirim ke email yang kamu daftarkan. (Panitia: isi{" "}
             <code className="text-mint-300">seminarCommunityUrl</code> di{" "}
-            <code className="text-mint-300">data/seminar.ts</code> untuk menampilkan tombol di sini.)
+            <code className="text-mint-300">data/seminar.ts</code> untuk menampilkan tombol di
+            sini.)
           </p>
         )}
       </div>

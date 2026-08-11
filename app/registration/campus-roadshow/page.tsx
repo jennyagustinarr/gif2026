@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 import { roadshowInfo, roadshowEventDetails } from "@/data/campusRoadshow";
 
 export const metadata: Metadata = {
-  title: "Daftar Campus Roadshow",
+  title: "Campus Roadshow",
   description: roadshowInfo.paragraphs[0],
 };
 
@@ -19,7 +19,10 @@ const EVENT_ROWS = [
 export default function CampusRoadshowRegistration() {
   return (
     <section className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="absolute -top-16 left-0 h-72 w-72 rounded-full bg-mint-500/10 blur-3xl animate-blob" />
         <div
           className="absolute top-40 right-0 h-64 w-64 rounded-full bg-lime-300/10 blur-3xl animate-blob"

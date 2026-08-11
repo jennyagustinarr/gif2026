@@ -8,7 +8,7 @@ import RoadshowSuccess from "../RoadshowSuccess";
 import { roadshowInfo, roadshowFormFields } from "@/data/campusRoadshow";
 
 export const metadata: Metadata = {
-  title: "Formulir Campus Roadshow",
+  title: "Campus Roadshow Registration Form",
   description: `Formulir pendaftaran Campus Roadshow Green Impact Festival 2026 di ${roadshowInfo.campus}.`,
 };
 
@@ -19,7 +19,7 @@ export default function CampusRoadshowFormPage() {
         href="/registration/campus-roadshow"
         className="inline-flex items-center gap-2 text-sm text-mint-200/60 transition-colors hover:text-mint-300"
       >
-        <ArrowLeft size={16} /> Kembali ke penjelasan acara
+        <ArrowLeft size={16} /> Back to Event Details
       </Link>
 
       <Reveal className="mt-6 block">

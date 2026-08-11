@@ -39,7 +39,9 @@ export default function PartnerForm() {
         }),
       });
 
-      const data = (await res.json().catch(() => null)) as { error?: string } | null;
+      const data = (await res.json().catch(() => null)) as {
+        error?: string;
+      } | null;
       if (!res.ok) throw new Error(data?.error ?? `Gagal mengirim (status ${res.status}).`);
 
       setStatus("success");
@@ -52,7 +54,7 @@ export default function PartnerForm() {
   if (status === "success") {
     return (
       <section className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-24 text-center">
-        <SectionHeading title="Terima kasih!" centered />
+        <SectionHeading title="Thank You!" centered />
         <p className="mt-6 text-mint-200/70">
           Permohonan kemitraanmu sudah kami terima. Tim Green Impact Festival akan menghubungi kamu
           segera.
@@ -152,7 +154,7 @@ export default function PartnerForm() {
 
       {/* FORMULIR */}
       <form onSubmit={handleSubmit} className="mt-14 space-y-7">
-        <p className="text-lg font-semibold text-mint-100">Formulir Pengajuan</p>
+        <p className="text-lg font-semibold text-mint-100">Inquiry Form</p>
 
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-mint-100 mb-3">
@@ -186,7 +188,7 @@ export default function PartnerForm() {
 
         <div>
           <label htmlFor="phone" className="block text-sm font-semibold text-mint-100 mb-3">
-            Nomor Handphone <span className="text-red-400">*</span>
+            Phone Number <span className="text-red-400">*</span>
           </label>
           <input
             id="phone"
@@ -240,8 +242,7 @@ export default function PartnerForm() {
 
         {status === "error" && (
           <p className="rounded-2xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-            {errorMessage} Kalau masalah berlanjut, email langsung ke
-            greenimpactfestival@sre.co.id.
+            {errorMessage} Kalau masalah berlanjut, email langsung ke greenimpactfestival@sre.co.id.
           </p>
         )}
 
@@ -252,7 +253,7 @@ export default function PartnerForm() {
             className="btn-shine inline-flex items-center gap-2 rounded-full border border-white/25 bg-night-900/60 px-10 py-3.5 text-sm font-medium text-mint-100 transition-all duration-300 hover:-translate-y-0.5 hover:border-mint-400/50 hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {status === "sending" && <Loader2 size={16} className="animate-spin" />}
-            {status === "sending" ? "Mengirim..." : "Submit"}
+            {status === "sending" ? "Submitting..." : "Submit"}
           </button>
         </div>
       </form>

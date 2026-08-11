@@ -36,7 +36,10 @@ const PARAGRAPHS = [
 export default function AboutPage() {
   return (
     <section className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="absolute -top-14 right-0 h-64 w-64 rounded-full bg-mint-500/10 blur-3xl animate-blob" />
         <div
           className="absolute bottom-20 -left-10 h-56 w-56 rounded-full bg-lime-300/10 blur-3xl animate-blob"

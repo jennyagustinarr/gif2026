@@ -135,7 +135,12 @@ body {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.32), transparent 75%);
+    background: linear-gradient(
+      110deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.32),
+      transparent 75%
+    );
     transform: translateX(-120%);
     transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   }

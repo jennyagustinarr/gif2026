@@ -7,8 +7,16 @@ import { necscInfo } from "@/data/necsc";
 import { yaInfo } from "@/data/youthAmbassador";
 
 const QUICK_LINKS = [
-  { href: "/about", label: "About Us", desc: "Kenali lebih dekat Green Impact Festival" },
-  { href: "/agenda", label: "Agenda", desc: "Lihat susunan acara lengkap" },
+  {
+    href: "/about",
+    label: "About Us",
+    desc: "Kenali lebih dekat Green Impact Festival",
+  },
+  {
+    href: "/agenda",
+    label: "Agenda",
+    desc: "Susunan acara lengkap sepanjang festival",
+  },
   {
     href: "/registration",
     label: "Registration",
@@ -33,14 +41,14 @@ const HIGHLIGHTS = [
     title: necscInfo.code,
     subtitle: necscInfo.fullName,
     desc: `Total hadiah ${necscInfo.totalPrize} untuk kategori mahasiswa dan SMA/sederajat.`,
-    cta: "Lihat detail kompetisi",
+    cta: "View Details",
   },
   {
     href: "/registration/youth-ambassador",
     title: yaInfo.code,
     subtitle: "Reels Challenge",
     desc: "8 Youth Ambassador terpilih dari subtema Lifestyle, Community, dan Green Career.",
-    cta: "Daftar jadi ambassador",
+    cta: "Register Now",
   },
 ];
 
@@ -117,13 +125,13 @@ export default function HomePage() {
               href="/registration"
               className="btn-shine rounded-full bg-brand px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand-dark hover:shadow-[0_16px_32px_-14px_rgba(61,220,132,0.9)]"
             >
-              Daftar Sekarang
+              Register Now
             </Link>
             <Link
               href="/agenda"
               className="rounded-full border border-white/20 px-8 py-3 text-sm font-semibold text-mint-100 transition-all duration-300 hover:-translate-y-1 hover:border-mint-400/50 hover:bg-white/5"
             >
-              Lihat Agenda
+              View Agenda
             </Link>
           </div>
         </div>

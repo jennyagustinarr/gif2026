@@ -35,7 +35,10 @@ const OPTIONS = [
 export default function RegistrationHub() {
   return (
     <section className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="absolute -top-20 left-1/3 h-72 w-72 rounded-full bg-mint-500/10 blur-3xl animate-blob" />
       </div>
 
@@ -59,7 +62,7 @@ export default function RegistrationHub() {
               </p>
               <p className="text-sm text-mint-200/60 mt-2">{opt.desc}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-mint-400">
-                Daftar
+                Register
                 <span className="transition-transform duration-300 group-hover:translate-x-1.5">
                   &rarr;
                 </span>

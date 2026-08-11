@@ -8,7 +8,7 @@ import SeminarSuccess from "../SeminarSuccess";
 import { seminarFormFields, seminarEventDetails } from "@/data/seminar";
 
 export const metadata: Metadata = {
-  title: "Formulir Seminar",
+  title: "Seminar Registration Form",
   description: "Formulir pendaftaran seminar utama Green Impact Festival 2026.",
 };
 
@@ -19,11 +19,11 @@ export default function SeminarFormPage() {
         href="/registration/seminar"
         className="inline-flex items-center gap-2 text-sm text-mint-200/60 transition-colors hover:text-mint-300"
       >
-        <ArrowLeft size={16} /> Kembali ke penjelasan seminar
+        <ArrowLeft size={16} /> Back to Seminar
       </Link>
 
       <Reveal className="mt-6 block">
-        <SectionHeading title="Formulir Pendaftaran" />
+        <SectionHeading title="Registration Form" />
         <p className="mt-4 text-mint-200/70">
           Seminar Green Impact Festival 2026 — {seminarEventDetails.venue}
         </p>

@@ -41,7 +41,7 @@ export const roadshowInfo = {
   ],
   price: "Free Registration",
   formIntro: "Please fill in the registration form below with accurate information.",
-  ctaLabel: "Registration",
+  ctaLabel: "Register Now",
 };
 
 /** Teks yang tampil setelah pendaftaran berhasil dikirim. */
@@ -96,7 +96,7 @@ export const roadshowFormFields: FormField[] = [
   // --- Muncul hanya kalau memilih "Other" -----------------------------
   {
     name: "otherStatus",
-    label: "Sebutkan status kamu",
+    label: "Please Specify",
     type: "text",
     required: true,
     placeholder: "Job title, nama organisasi, atau asal instansi",

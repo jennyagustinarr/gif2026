@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 export default function YouthAmbassadorRegistration() {
   return (
     <section className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="absolute -top-10 -left-16 h-72 w-72 rounded-full bg-lime-300/10 blur-3xl animate-blob" />
       </div>
 
@@ -77,7 +80,7 @@ export default function YouthAmbassadorRegistration() {
 
         <Reveal direction="right" delay={110} className="h-full">
           <div className="card-hover h-full rounded-2xl border border-lime-300/20 bg-night-900 p-6 hover:border-mint-400/40">
-            <p className="font-semibold text-mint-100 mb-3">Format Video</p>
+            <p className="font-semibold text-mint-100 mb-3">Video Format</p>
             <ul className="space-y-1.5 text-sm text-mint-200/70 list-disc list-inside">
               {yaInfo.videoFormat.map((v) => (
                 <li key={v} className="transition-colors hover:text-mint-200">
@@ -92,7 +95,7 @@ export default function YouthAmbassadorRegistration() {
       <Reveal>
         <RegisterCta
           href="/registration/youth-ambassador/form"
-          label="Daftar Youth Ambassador"
+          label="Register as Youth Ambassador"
           note="Pastikan kedua Instagram Reels kamu sudah diunggah sesuai format video di atas, karena link-nya diminta di formulir."
         />
       </Reveal>

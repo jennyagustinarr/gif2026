@@ -21,7 +21,7 @@ export default function BackToTop() {
     <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      aria-label="Kembali ke atas"
+      aria-label="Back to top"
       className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-mint-400/30 bg-night-900/90 text-mint-300 shadow-lg shadow-black/40 backdrop-blur transition-all duration-300 hover:border-mint-400/70 hover:bg-night-800 hover:text-mint-200 ${
         show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
       }`}

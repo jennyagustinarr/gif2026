@@ -11,7 +11,7 @@ const NAV_LINKS = [
 ];
 
 const REGISTRATION_LINKS = [
-  { href: "/registration", label: "Semua Pendaftaran" },
+  { href: "/registration", label: "All Programs" },
   { href: "/registration/youth-ambassador", label: "Youth Ambassador" },
   { href: "/registration/necsc", label: "NECSC" },
   { href: "/registration/campus-roadshow", label: "Campus Roadshow" },

@@ -13,7 +13,10 @@ export const metadata: Metadata = {
 export default function FaqPage() {
   return (
     <section className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="absolute -top-12 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-mint-500/10 blur-3xl animate-blob" />
       </div>
 
@@ -25,7 +28,7 @@ export default function FaqPage() {
 
       <Reveal delay={120} className="mt-10 block">
         <div className="card-hover rounded-2xl border border-lime-300/20 bg-night-900 p-6 hover:border-mint-400/50">
-          <p className="font-semibold text-mint-100">Masih ada pertanyaan?</p>
+          <p className="font-semibold text-mint-100">Still Have Questions?</p>
           <p className="mt-2 text-sm text-mint-200/60">
             Hubungi panitia lewat{" "}
             <a href={`mailto:${contactInfo.email}`} className="link-underline text-mint-300">

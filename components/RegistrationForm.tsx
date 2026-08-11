@@ -75,7 +75,9 @@ export default function RegistrationForm({
         body: JSON.stringify({ program, values: payload }),
       });
 
-      const data = (await res.json().catch(() => null)) as { error?: string } | null;
+      const data = (await res.json().catch(() => null)) as {
+        error?: string;
+      } | null;
 
       if (!res.ok) {
         throw new Error(data?.error ?? `Gagal mengirim (status ${res.status}).`);
@@ -98,7 +100,7 @@ export default function RegistrationForm({
         <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-mint-400/15 text-mint-300">
           <Check size={28} className="animate-bounce-subtle" />
         </span>
-        <p className="text-mint-300 font-semibold text-lg">Terima kasih sudah mendaftar!</p>
+        <p className="text-mint-300 font-semibold text-lg">Registration Successful!</p>
         <p className="text-mint-200/70 text-sm mt-2">
           Tim kami akan menghubungi kamu lewat email atau WhatsApp yang terdaftar.
         </p>
@@ -218,7 +220,7 @@ export default function RegistrationForm({
         className="btn-shine inline-flex items-center gap-2 rounded-full bg-brand px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand-dark hover:shadow-[0_16px_32px_-14px_rgba(61,220,132,0.9)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
       >
         {status === "sending" && <Loader2 size={16} className="animate-spin" />}
-        {status === "sending" ? "Mengirim..." : submitLabel}
+        {status === "sending" ? "Submitting..." : submitLabel}
       </button>
     </form>
   );

@@ -59,39 +59,44 @@ export const yaInfo = {
 };
 
 export const yaFormFields: FormField[] = [
-  { name: "fullName", label: "Nama Lengkap", type: "text", required: true },
+  { name: "fullName", label: "Full Name", type: "text", required: true },
   {
     name: "institution",
-    label: "Asal Sekolah / Universitas / Instansi",
+    label: "Institution / University",
     type: "text",
     required: true,
   },
-  { name: "email", label: "Email Aktif", type: "email", required: true },
-  { name: "phone", label: "Nomor Handphone", type: "tel", required: true },
+  { name: "email", label: "Email Address", type: "email", required: true },
+  { name: "phone", label: "Phone Number", type: "tel", required: true },
   {
     name: "subtheme",
-    label: "Subtema Pilihan",
+    label: "Sub-Theme",
     type: "select",
     required: true,
     options: yaInfo.subthemes.map((sub) => sub.title),
   },
-  { name: "twibbonProof", label: "Bukti Upload Twibbon", type: "file", required: true },
+  {
+    name: "twibbonProof",
+    label: "Twibbon Proof",
+    type: "file",
+    required: true,
+  },
   {
     name: "followProof",
-    label: "Bukti Follow @greenimpactfestival & @sreindonesia",
+    label: "Follow Proof (@greenimpactfestival & @sreindonesia)",
     type: "file",
     required: true,
   },
   {
     name: "reels1",
-    label: "Upload Link Reels 1",
+    label: "Reels 1 Link",
     type: "text",
     required: true,
     placeholder: "https://instagram.com/reel/...",
   },
   {
     name: "reels2",
-    label: "Upload Link Reels 2",
+    label: "Reels 2 Link",
     type: "text",
     required: true,
     placeholder: "https://instagram.com/reel/...",

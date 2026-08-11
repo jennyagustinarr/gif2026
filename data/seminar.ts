@@ -29,14 +29,14 @@ export const seminarInfo = {
 export const seminarFormFields: FormField[] = [
   {
     name: "name",
-    label: "Nama Lengkap",
+    label: "Full Name",
     type: "text",
     required: true,
     placeholder: "Nama lengkap sesuai identitas",
   },
   {
     name: "email",
-    label: "Email Aktif",
+    label: "Email Address",
     type: "email",
     required: true,
     placeholder: "nama@example.com",
@@ -44,7 +44,7 @@ export const seminarFormFields: FormField[] = [
   },
   {
     name: "phone",
-    label: "Nomor Handphone",
+    label: "Phone Number",
     type: "tel",
     required: true,
     placeholder: "081234567890",
@@ -52,7 +52,7 @@ export const seminarFormFields: FormField[] = [
   },
   {
     name: "institution",
-    label: "Asal Instansi",
+    label: "Institution",
     type: "text",
     required: true,
     placeholder: "Nama kampus, sekolah, perusahaan, atau komunitas",

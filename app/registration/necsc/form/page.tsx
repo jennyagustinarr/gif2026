@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 import { necscInfo, necscFormFields } from "@/data/necsc";
 
 export const metadata: Metadata = {
-  title: `Formulir ${necscInfo.code}`,
+  title: `${necscInfo.code} Registration Form`,
   description: `Formulir pendaftaran ${necscInfo.fullName}.`,
 };
 
@@ -18,18 +18,22 @@ export default function NecscFormPage() {
         href="/registration/necsc"
         className="inline-flex items-center gap-2 text-sm text-mint-200/60 transition-colors hover:text-mint-300"
       >
-        <ArrowLeft size={16} /> Kembali ke penjelasan {necscInfo.code}
+        <ArrowLeft size={16} /> Back to {necscInfo.code}
       </Link>
 
       <Reveal className="mt-6 block">
-        <SectionHeading title="Formulir Pendaftaran" />
+        <SectionHeading title="Registration Form" />
         <p className="mt-4 text-mint-200/70">
           {necscInfo.code} — {necscInfo.fullName}
         </p>
       </Reveal>
 
       <Reveal delay={120} className="mt-10 block">
-        <RegistrationForm fields={necscFormFields} submitLabel="Daftar NECSC" program="necsc" />
+        <RegistrationForm
+          fields={necscFormFields}
+          submitLabel="Submit Registration"
+          program="necsc"
+        />
       </Reveal>
     </section>
   );

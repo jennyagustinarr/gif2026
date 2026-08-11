@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 export default function NecscRegistration() {
   return (
     <section className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="absolute -top-16 right-0 h-72 w-72 rounded-full bg-mint-500/10 blur-3xl animate-blob" />
       </div>
 
@@ -92,7 +95,7 @@ export default function NecscRegistration() {
       {/* MEKANISME */}
       <div className="mt-16">
         <Reveal>
-          <p className="font-semibold text-mint-100 mb-4">Mekanisme Pelaksanaan</p>
+          <p className="font-semibold text-mint-100 mb-4">Mechanism</p>
         </Reveal>
         <div className="grid gap-4 sm:grid-cols-2">
           {necscInfo.mechanism.map((m, i) => (
@@ -108,7 +111,7 @@ export default function NecscRegistration() {
 
       {/* SYARAT */}
       <Reveal className="mt-16 block">
-        <p className="font-semibold text-mint-100 mb-4">Syarat Peserta</p>
+        <p className="font-semibold text-mint-100 mb-4">Requirements</p>
         <ul className="space-y-1.5 text-sm text-mint-200/70 list-disc list-inside rounded-2xl border border-lime-300/20 bg-night-900 p-6">
           {necscInfo.requirements.map((r) => (
             <li key={r} className="transition-colors hover:text-mint-200">
@@ -121,7 +124,7 @@ export default function NecscRegistration() {
       <Reveal>
         <RegisterCta
           href="/registration/necsc/form"
-          label="Daftar NECSC Sekarang"
+          label="Register for NECSC"
           note="Pastikan kamu sudah membaca subtema, mekanisme, dan syarat peserta di atas. Siapkan juga berkas KTM, bukti twibbon, bukti follow, dan abstrak sebelum mengisi formulir."
         />
       </Reveal>
