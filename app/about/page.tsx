@@ -22,14 +22,14 @@ const PILLARS = [
     desc: "Program duta muda yang menyuarakan isu keberlanjutan lewat konten digital dan aksi nyata.",
   },
   {
-    title: "Expo",
-    desc: "Ruang pameran bagi UMKM, komunitas, institusi, dan korporasi yang bergerak di bidang keberlanjutan.",
+    title: "Campus Roadshow",
+    desc: "Kunjungan ke kampus dan sekolah untuk mengenalkan isu keberlanjutan sekaligus seluruh program GIF 2026.",
   },
 ];
 
 const PARAGRAPHS = [
   "Green Impact Festival adalah festival inovasi lingkungan tahunan yang diselenggarakan oleh SRE Indonesia bersama Rakyat Merdeka, mempertemukan pelajar, mahasiswa, praktisi, dan pengambil kebijakan untuk mendorong pembangunan berkelanjutan di Indonesia.",
-  "Festival ini menghadirkan rangkaian seminar dengan pembicara ahli, kompetisi artikel ilmiah nasional NECSC, program Youth Ambassador, serta ruang expo bagi mitra dan komunitas yang bergerak di bidang keberlanjutan.",
+  "Festival ini menghadirkan rangkaian seminar dengan pembicara ahli, kompetisi artikel ilmiah nasional NECSC, program Youth Ambassador, serta Campus Roadshow yang menjangkau kampus dan sekolah di berbagai daerah.",
   "Green Impact Festival 2026 diselenggarakan secara offline dan terbuka bagi pelajar SMA/sederajat, mahasiswa, hingga masyarakat umum yang peduli terhadap isu energi, iklim, dan keberlanjutan.",
 ];
 

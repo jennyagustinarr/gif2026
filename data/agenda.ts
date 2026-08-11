@@ -70,5 +70,5 @@ export const eventInfo = {
   organizer: "SRE Indonesia",
   tagline: "Beyond Sustainability",
   date: "Jadwal menyusul - 2026",
-  location: "Jakarta Pusat, DKI Jakarta",
+  location: "Djakarta Theatre, Jakarta",
 };

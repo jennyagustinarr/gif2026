@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import SectionHeading from "@/components/SectionHeading";
-import RegistrationForm from "@/components/RegistrationForm";
+import RegisterCta from "@/components/RegisterCta";
 import Reveal from "@/components/Reveal";
-import { yaInfo, yaFormFields } from "@/data/youthAmbassador";
+import { yaInfo } from "@/data/youthAmbassador";
 
 export const metadata: Metadata = {
-  title: "Daftar Youth Ambassador",
+  title: "Youth Ambassador",
   description: yaInfo.intro,
 };
 
@@ -89,12 +89,11 @@ export default function YouthAmbassadorRegistration() {
         </Reveal>
       </div>
 
-      <Reveal className="mt-14 block">
-        <p className="font-semibold text-mint-100 mb-6 text-lg">Formulir Pendaftaran</p>
-        <RegistrationForm
-          fields={yaFormFields}
-          submitLabel="Daftar Youth Ambassador"
-          program="youth-ambassador"
+      <Reveal>
+        <RegisterCta
+          href="/registration/youth-ambassador/form"
+          label="Daftar Youth Ambassador"
+          note="Pastikan kedua Instagram Reels kamu sudah diunggah sesuai format video di atas, karena link-nya diminta di formulir."
         />
       </Reveal>
     </section>

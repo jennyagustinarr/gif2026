@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Registration",
   description:
-    "Pilih jenis pendaftaran Green Impact Festival 2026: Youth Ambassador, NECSC, Expo, atau Seminar.",
+    "Pilih jenis pendaftaran Green Impact Festival 2026: Youth Ambassador, NECSC, Campus Roadshow, atau Seminar.",
 };
 
 const OPTIONS = [
@@ -21,9 +21,9 @@ const OPTIONS = [
     desc: "Kompetisi artikel ilmiah nasional seputar energi, iklim, dan keberlanjutan.",
   },
   {
-    href: "/registration/expo",
-    title: "Expo",
-    desc: "Buka booth dan perkenalkan produk atau komunitasmu di Green Impact Festival.",
+    href: "/registration/campus-roadshow",
+    title: "Campus Roadshow",
+    desc: "Ikuti kunjungan GIF 2026 ke kampus dan sekolah: sesi berbagi, info program, dan networking.",
   },
   {
     href: "/registration/seminar",

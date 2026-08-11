@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Green Impact Festival 2026",
     description:
-      "Festival inovasi lingkungan terbesar di Indonesia. Seminar, NECSC 2026, Youth Ambassador, dan Expo keberlanjutan.",
+      "Festival inovasi lingkungan terbesar di Indonesia. Seminar, NECSC 2026, Youth Ambassador, dan Campus Roadshow keberlanjutan.",
     url: siteUrl,
     siteName: "Green Impact Festival 2026",
     locale: "id_ID",
@@ -42,9 +42,30 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Skrip ini jalan sebelum halaman digambar.
+ *
+ * - Menambah class `js` yang MENGAKTIFKAN animasi scroll-reveal.
+ *   Tanpa class ini, semua konten tampil normal tanpa animasi.
+ * - Kalau setelah 4 detik React ternyata gagal hidrasi (data-hydrated
+ *   tidak pernah diset oleh app/template.tsx), class `js` dilepas lagi
+ *   supaya halaman tetap terbaca dan tidak pernah kosong.
+ */
+const ANIMATION_GATE = `
+document.documentElement.classList.add('js');
+setTimeout(function () {
+  if (document.documentElement.dataset.hydrated !== 'true') {
+    document.documentElement.classList.remove('js');
+  }
+}, 4000);
+`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" className={poppins.variable}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: ANIMATION_GATE }} />
+      </head>
       <body className="font-sans bg-night-950 text-mint-200/90 min-h-screen flex flex-col">
         <ScrollProgress />
         <Navbar />

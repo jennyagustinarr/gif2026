@@ -14,7 +14,7 @@ const REGISTRATION_LINKS = [
   { href: "/registration", label: "Semua Pendaftaran" },
   { href: "/registration/youth-ambassador", label: "Youth Ambassador" },
   { href: "/registration/necsc", label: "NECSC" },
-  { href: "/registration/expo", label: "Expo" },
+  { href: "/registration/campus-roadshow", label: "Campus Roadshow" },
   { href: "/registration/seminar", label: "Seminar" },
 ];
 
@@ -23,7 +23,6 @@ const LOGO_URL =
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [regOpen, setRegOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -41,7 +40,6 @@ export default function Navbar() {
   // Tutup menu mobile setiap kali pindah halaman.
   useEffect(() => {
     setMobileOpen(false);
-    setRegOpen(false);
   }, [pathname]);
 
   function linkClass(href: string) {
@@ -84,43 +82,38 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <div
-            className="relative"
-            onMouseEnter={() => setRegOpen(true)}
-            onMouseLeave={() => setRegOpen(false)}
-          >
-            <button
+          {/* Dropdown murni CSS (group-hover / focus-within) supaya tetap
+              berfungsi walau JavaScript bermasalah. Judulnya link asli,
+              jadi diklik langsung menuju /registration. */}
+          <div className="group relative">
+            <Link
+              href="/registration"
               className={`flex items-center gap-1 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
                 registrationActive
                   ? "bg-mint-400/15 text-mint-300"
                   : "text-mint-200/90 hover:bg-mint-400/10 hover:text-mint-300"
               }`}
-              onClick={() => setRegOpen((v) => !v)}
-              aria-expanded={regOpen}
-              aria-haspopup="true"
             >
               Registration
               <ChevronDown
                 size={16}
-                className={`transition-transform duration-300 ${regOpen ? "rotate-180" : ""}`}
+                className="transition-transform duration-300 group-hover:rotate-180"
               />
-            </button>
+            </Link>
 
-            {regOpen && (
-              <div className="absolute left-0 top-full mt-2 w-64 rounded-2xl border border-white/10 bg-night-900/95 p-2 shadow-xl shadow-black/50 backdrop-blur animate-slide-down">
-                {REGISTRATION_LINKS.map((link, i) => (
+            <div className="invisible absolute left-0 top-full w-64 translate-y-1 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+              <div className="rounded-2xl border border-white/10 bg-night-900/95 p-2 shadow-xl shadow-black/50 backdrop-blur">
+                {REGISTRATION_LINKS.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    style={{ animationDelay: `${i * 45}ms` }}
-                    className="block rounded-xl px-4 py-2.5 text-sm text-mint-200/90 transition-all duration-200 hover:translate-x-1 hover:bg-mint-400/10 hover:text-mint-300 animate-fade-in"
-                    onClick={() => setRegOpen(false)}
+                    className="block rounded-xl px-4 py-2.5 text-sm text-mint-200/90 transition-all duration-200 hover:translate-x-1 hover:bg-mint-400/10 hover:text-mint-300"
                   >
                     {link.label}
                   </Link>
                 ))}
               </div>
-            )}
+            </div>
           </div>
 
           <Link href="/faq" className={linkClass("/faq")}>

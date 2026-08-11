@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
 import { Calendar, MapPin } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
-import SeminarRegisterCard from "./SeminarRegisterCard";
+import RegisterCta from "@/components/RegisterCta";
 import Reveal from "@/components/Reveal";
 import { agendaSessions, eventInfo } from "@/data/agenda";
+import { seminarInfo, seminarEventDetails } from "@/data/seminar";
 
 export const metadata: Metadata = {
-  title: "Daftar Seminar",
-  description:
-    "Daftar untuk menghadiri rangkaian sesi seminar utama Green Impact Festival 2026 di Jakarta.",
+  title: "Seminar",
+  description: seminarInfo.intro,
 };
 
 const POSTER_URL =
   "https://firebasestorage.googleapis.com/v0/b/sre-website-a43e8.appspot.com/o/greenimpact-festival-2025%2Fimages%2Fgreenimpactfest-logo.png?alt=media&token=ebdc6d50-9033-4bd4-901e-5a60ad9cc5de";
 
-export default function SeminarRegistration() {
+export default function SeminarPage() {
   return (
     <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
       <Reveal>
-        <SectionHeading title="Daftar Seminar" />
+        <SectionHeading title="Seminar" />
+        <p className="mt-4 text-mint-200/70">{seminarInfo.title}</p>
       </Reveal>
 
       <Reveal delay={100} direction="zoom">
@@ -39,16 +40,33 @@ export default function SeminarRegistration() {
             <div className="mt-5 flex flex-col sm:flex-row gap-4 text-sm">
               <div className="flex items-center gap-2">
                 <Calendar size={18} />
-                <span>{eventInfo.date}</span>
+                <span>{seminarEventDetails.date}</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin size={18} />
-                <span>{eventInfo.location}</span>
+                <span>{seminarEventDetails.venue}</span>
               </div>
             </div>
 
-            <SeminarRegisterCard />
+            <p className="mt-5 text-sm leading-relaxed text-neutral-700">{seminarInfo.intro}</p>
           </div>
+        </div>
+      </Reveal>
+
+      <Reveal delay={120} className="mt-10 block">
+        <p className="text-mint-200/80 leading-relaxed">{seminarInfo.description}</p>
+      </Reveal>
+
+      <Reveal delay={150} className="mt-8 block">
+        <div className="card-hover rounded-2xl border border-lime-300/20 bg-night-900 p-6 hover:border-mint-400/40">
+          <p className="font-semibold text-mint-100 mb-3">Yang Kamu Dapat</p>
+          <ul className="space-y-1.5 text-sm text-mint-200/70 list-disc list-inside">
+            {seminarInfo.benefits.map((b) => (
+              <li key={b} className="transition-colors hover:text-mint-200">
+                {b}
+              </li>
+            ))}
+          </ul>
         </div>
       </Reveal>
 
@@ -74,6 +92,14 @@ export default function SeminarRegistration() {
           ))}
         </div>
       </div>
+
+      <Reveal>
+        <RegisterCta
+          href="/registration/seminar/form"
+          label="Daftar Seminar Sekarang"
+          note="Pendaftaran gratis. Informasi acara akan dikirim ke email yang kamu daftarkan."
+        />
+      </Reveal>
     </section>
   );
 }

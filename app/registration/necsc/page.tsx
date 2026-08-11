@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import SectionHeading from "@/components/SectionHeading";
-import RegistrationForm from "@/components/RegistrationForm";
+import RegisterCta from "@/components/RegisterCta";
 import Reveal from "@/components/Reveal";
-import { necscInfo, necscFormFields } from "@/data/necsc";
+import { necscInfo } from "@/data/necsc";
 
 export const metadata: Metadata = {
-  title: `Daftar ${necscInfo.code}`,
+  title: necscInfo.code,
   description: necscInfo.intro,
 };
 
@@ -118,12 +118,12 @@ export default function NecscRegistration() {
         </ul>
       </Reveal>
 
-      {/* FORM */}
-      <Reveal className="mt-16 block scroll-mt-28">
-        <div id="formulir">
-          <p className="font-semibold text-mint-100 mb-6 text-lg">Formulir Pendaftaran</p>
-          <RegistrationForm fields={necscFormFields} submitLabel="Daftar NECSC" program="necsc" />
-        </div>
+      <Reveal>
+        <RegisterCta
+          href="/registration/necsc/form"
+          label="Daftar NECSC Sekarang"
+          note="Pastikan kamu sudah membaca subtema, mekanisme, dan syarat peserta di atas. Siapkan juga berkas KTM, bukti twibbon, bukti follow, dan abstrak sebelum mengisi formulir."
+        />
       </Reveal>
     </section>
   );

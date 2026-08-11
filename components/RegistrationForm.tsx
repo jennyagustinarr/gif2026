@@ -10,24 +10,44 @@ export interface FormField {
   required?: boolean;
   options?: string[];
   placeholder?: string;
+  /** Teks bantuan kecil di bawah input. */
+  helpText?: string;
+  /** Pola validasi HTML (atribut pattern). */
+  pattern?: string;
+  /**
+   * Tampilkan field ini hanya kalau field lain bernilai salah satu dari
+   * `values`. Field yang tersembunyi tidak divalidasi dan tidak ikut dikirim.
+   */
+  showIf?: { field: string; values: string[] };
 }
 
 const inputClass =
   "w-full rounded-2xl bg-night-900 border border-white/10 px-4 py-3 text-sm text-mint-100 placeholder:text-mint-200/30 transition-all duration-300 hover:border-mint-400/30 focus:outline-none focus:border-mint-400/50 focus:ring-2 focus:ring-mint-400/40 focus:shadow-[0_0_0_4px_rgba(110,231,168,0.07)]";
 
+/** Field tampil kalau tidak punya syarat, atau syaratnya terpenuhi. */
+function isVisible(field: FormField, values: Record<string, string>): boolean {
+  if (!field.showIf) return true;
+  return field.showIf.values.includes(values[field.showIf.field] ?? "");
+}
+
 export default function RegistrationForm({
   fields,
   submitLabel = "Submit",
   program = "general",
+  successContent,
 }: {
   fields: FormField[];
   submitLabel?: string;
-  /** Dipakai API route untuk membedakan asal pendaftaran (necsc, youth-ambassador, expo, dst). */
+  /** Dipakai API route untuk membedakan asal pendaftaran (necsc, youth-ambassador, dst). */
   program?: string;
+  /** Tampilan pengganti pesan sukses bawaan, mis. instruksi khusus per program. */
+  successContent?: React.ReactNode;
 }) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const visibleFields = fields.filter((field) => isVisible(field, values));
 
   function handleChange(name: string, value: string) {
     setValues((prev) => ({ ...prev, [name]: value }));
@@ -38,16 +58,29 @@ export default function RegistrationForm({
     setStatus("sending");
     setErrorMessage("");
 
+    // Hanya kirim field yang sedang tampil, supaya jawaban lama dari cabang
+    // pilihan yang sudah ditinggalkan tidak ikut terkirim.
+    const payload: Record<string, string> = {};
+    for (const field of visibleFields) {
+      const value = values[field.name];
+      if (value !== undefined && value !== "") payload[field.name] = value;
+    }
+
     try {
       // CATATAN: file baru dikirim sebagai nama file saja. Untuk upload file
       // sungguhan, ganti jadi FormData + storage (Firebase Storage, S3, dsb).
       const res = await fetch("/api/registration", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ program, values }),
+        body: JSON.stringify({ program, values: payload }),
       });
 
-      if (!res.ok) throw new Error(`Gagal mengirim (status ${res.status})`);
+      const data = (await res.json().catch(() => null)) as { error?: string } | null;
+
+      if (!res.ok) {
+        throw new Error(data?.error ?? `Gagal mengirim (status ${res.status}).`);
+      }
+
       setStatus("success");
     } catch (err) {
       setStatus("error");
@@ -56,6 +89,10 @@ export default function RegistrationForm({
   }
 
   if (status === "success") {
+    if (successContent) {
+      return <div className="animate-fade-up">{successContent}</div>;
+    }
+
     return (
       <div className="animate-fade-up rounded-2xl border border-mint-400/30 bg-gradient-to-br from-mint-500/10 to-transparent p-8 text-center">
         <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-mint-400/15 text-mint-300">
@@ -71,7 +108,7 @@ export default function RegistrationForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      {fields.map((field, i) => (
+      {visibleFields.map((field, i) => (
         <div
           key={field.name}
           className="animate-fade-up"
@@ -158,17 +195,20 @@ export default function RegistrationForm({
               type={field.type}
               required={field.required}
               placeholder={field.placeholder}
+              pattern={field.pattern}
               value={values[field.name] ?? ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
               className={inputClass}
             />
           )}
+
+          {field.helpText && <p className="mt-1.5 text-xs text-mint-200/40">{field.helpText}</p>}
         </div>
       ))}
 
       {status === "error" && (
         <p className="animate-fade-up rounded-2xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-          {errorMessage} Silakan coba lagi atau hubungi panitia lewat WhatsApp.
+          {errorMessage} Kalau masalah berlanjut, hubungi panitia lewat WhatsApp.
         </p>
       )}
 
