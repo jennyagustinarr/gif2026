@@ -7,7 +7,7 @@ import { agendaSessions, eventInfo } from "@/data/agenda";
 import { seminarInfo, seminarEventDetails } from "@/data/seminar";
 
 export const metadata: Metadata = {
-  title: "Seminar",
+  title: "High Level Dialogue",
   description: seminarInfo.intro,
 };
 
@@ -18,7 +18,7 @@ export default function SeminarPage() {
   return (
     <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
       <Reveal>
-        <SectionHeading title="Seminar" />
+        <SectionHeading title={seminarInfo.name} />
         <p className="mt-4 text-mint-200/70">{seminarInfo.title}</p>
       </Reveal>
 
@@ -96,7 +96,7 @@ export default function SeminarPage() {
       <Reveal>
         <RegisterCta
           href="/registration/seminar/form"
-          label="Register for Seminar"
+          label="Register for High Level Dialogue"
           note="Pendaftaran gratis. Informasi acara akan dikirim ke email yang kamu daftarkan."
         />
       </Reveal>

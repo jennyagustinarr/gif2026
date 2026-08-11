@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Green Impact Festival 2026",
     description:
-      "Festival inovasi lingkungan terbesar di Indonesia. Seminar, NECSC 2026, Youth Ambassador, dan Campus Roadshow keberlanjutan.",
+      "Festival inovasi lingkungan terbesar di Indonesia. High Level Dialogue, NECSC 2026, Youth Ambassador, dan Campus Roadshow keberlanjutan.",
     url: siteUrl,
     siteName: "Green Impact Festival 2026",
     locale: "id_ID",

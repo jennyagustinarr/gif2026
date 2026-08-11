@@ -38,10 +38,11 @@ export const necscInfo = {
         "Finalis mengumpulkan artikel ilmiah lengkap (maks. 8.000 karakter) beserta video singkat. Pemenang ditentukan dari kualitas tulisan, kedalaman analisis, dan orisinalitas gagasan, lalu diumumkan pada malam Awarding.",
     },
   ],
-  totalPrize: "Rp 52.000.000,00",
+  // Total = 4 subtema x (Rp 5 juta kategori mahasiswa + Rp 3 juta kategori SMA).
+  totalPrize: "Rp 32.000.000,00",
   prizeBreakdown: [
-    "1st Winner kategori Mahasiswa - Rp 8.000.000,00 / subtema",
-    "1st Winner kategori SMA/MA/MK - Rp 5.000.000,00 / subtema",
+    "1st Winner kategori Mahasiswa - Rp 5.000.000,00 / subtema",
+    "1st Winner kategori SMA/MA/MK - Rp 3.000.000,00 / subtema",
     "Trofi & sertifikat resmi bertaraf nasional",
     "Peluang jaringan nasional dengan akademisi, praktisi, dan mitra sustainability",
     "Publikasi karya & profil pemenang di kanal resmi SRE Indonesia dan Green Impact Festival",

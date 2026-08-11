@@ -29,15 +29,15 @@ Dibangun dari spesifikasi awal di [green-impact-festival-nextjs.md](green-impact
 
 ## Teknologi
 
-| Bagian | Pilihan |
-| --- | --- |
-| Framework | Next.js 15 (App Router, React 19) |
-| Bahasa | TypeScript (strict mode) |
-| Styling | Tailwind CSS 3 + CSS kustom di `app/globals.css` |
-| Ikon | lucide-react |
-| Font | Poppins via `next/font/google` |
-| Database | MySQL / MariaDB (XAMPP), driver `mysql2` |
-| Linting | ESLint (`next/core-web-vitals`) |
+| Bagian    | Pilihan                                          |
+| --------- | ------------------------------------------------ |
+| Framework | Next.js 15 (App Router, React 19)                |
+| Bahasa    | TypeScript (strict mode)                         |
+| Styling   | Tailwind CSS 3 + CSS kustom di `app/globals.css` |
+| Ikon      | lucide-react                                     |
+| Font      | Poppins via `next/font/google`                   |
+| Database  | MySQL / MariaDB (XAMPP), driver `mysql2`         |
+| Linting   | ESLint (`next/core-web-vitals`)                  |
 
 Tidak memakai library animasi, state management, atau komponen UI pihak ketiga — semuanya
 dibangun dari Tailwind, CSS, dan React state biasa agar bundle tetap ringan (~103 kB shared JS).
@@ -70,13 +70,13 @@ Panduan lengkap ada di [database/README.md](database/README.md).
 
 ### Perintah
 
-| Perintah | Fungsi |
-| --- | --- |
-| `npm run dev` | Development server dengan hot reload |
-| `npm run build` | Build production |
-| `npm start` | Menjalankan hasil build (`npm run build` dulu) |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | Type checking tanpa emit output |
+| Perintah            | Fungsi                                         |
+| ------------------- | ---------------------------------------------- |
+| `npm run dev`       | Development server dengan hot reload           |
+| `npm run build`     | Build production                               |
+| `npm start`         | Menjalankan hasil build (`npm run build` dulu) |
+| `npm run lint`      | ESLint                                         |
+| `npm run typecheck` | Type checking tanpa emit output                |
 
 ---
 
@@ -86,28 +86,28 @@ Hasil build: **18 entri route** yang menghasilkan **20 halaman**, karena dua rou
 Roadshow bersifat dinamis dan dibangun satu halaman per kampus lewat `generateStaticParams`.
 Ditambah 2 redirect dari URL struktur lama.
 
-| Route | Jenis | Fungsi |
-| --- | --- | --- |
-| `/` | Statis | Beranda — hero, highlight program, tautan cepat |
-| `/about` | Statis | Profil festival dan empat pilar kegiatan |
-| `/agenda` | Statis | Susunan acara, accordion daftar pembicara |
-| `/faq` | Statis | Pertanyaan umum, accordion + kontak panitia |
-| `/become-a-partner` | Statis | Penjelasan 4 tipe kemitraan + formulir pengajuan |
-| `/registration` | Statis | Hub — memilih salah satu dari 4 program |
-| `/registration/necsc` | Statis | Penjelasan kompetisi NECSC |
-| `/registration/necsc/form` | Statis | Formulir pendaftaran NECSC |
-| `/registration/youth-ambassador` | Statis | Penjelasan program Youth Ambassador |
-| `/registration/youth-ambassador/form` | Statis | Formulir Youth Ambassador |
-| `/registration/campus-roadshow` | Statis | Daftar seluruh agenda roadshow per kampus |
-| `/registration/campus-roadshow/[campus]` | SSG | Penjelasan agenda satu kampus |
-| `/registration/campus-roadshow/[campus]/form` | SSG | Formulir agenda kampus tersebut |
-| `/registration/seminar` | Statis | Penjelasan seminar utama + daftar sesi |
-| `/registration/seminar/form` | Statis | Formulir seminar |
-| `/api/registration` | Dinamis | `POST` penerima seluruh formulir |
-| `/api/health` | Dinamis | `GET` cek koneksi database |
-| `/necsc`, `/registration/expo` | Redirect | Peninggalan struktur lama (lihat [Konfigurasi](#konfigurasi)) |
+| Route                                         | Jenis    | Fungsi                                                        |
+| --------------------------------------------- | -------- | ------------------------------------------------------------- |
+| `/`                                           | Statis   | Beranda — hero, highlight program, tautan cepat               |
+| `/about`                                      | Statis   | Profil festival dan empat pilar kegiatan                      |
+| `/agenda`                                     | Statis   | Susunan acara, accordion daftar pembicara                     |
+| `/faq`                                        | Statis   | Pertanyaan umum, accordion + kontak panitia                   |
+| `/become-a-partner`                           | Statis   | Penjelasan 4 tipe kemitraan + formulir pengajuan              |
+| `/registration`                               | Statis   | Hub — memilih salah satu dari 4 program                       |
+| `/registration/necsc`                         | Statis   | Penjelasan kompetisi NECSC                                    |
+| `/registration/necsc/form`                    | Statis   | Formulir pendaftaran NECSC                                    |
+| `/registration/youth-ambassador`              | Statis   | Penjelasan program Youth Ambassador                           |
+| `/registration/youth-ambassador/form`         | Statis   | Formulir Youth Ambassador                                     |
+| `/registration/campus-roadshow`               | Statis   | Daftar seluruh agenda roadshow per kampus                     |
+| `/registration/campus-roadshow/[campus]`      | SSG      | Penjelasan agenda satu kampus                                 |
+| `/registration/campus-roadshow/[campus]/form` | SSG      | Formulir agenda kampus tersebut                               |
+| `/registration/seminar`                       | Statis   | Penjelasan High Level Dialogue + daftar sesi                  |
+| `/registration/seminar/form`                  | Statis   | Formulir High Level Dialogue                                  |
+| `/api/registration`                           | Dinamis  | `POST` penerima seluruh formulir                              |
+| `/api/health`                                 | Dinamis  | `GET` cek koneksi database                                    |
+| `/necsc`, `/registration/expo`                | Redirect | Peninggalan struktur lama (lihat [Konfigurasi](#konfigurasi)) |
 
-Semua halaman di-*prerender* saat build, jadi pemuatan awal cepat. Hanya kedua API route yang
+Semua halaman di-_prerender_ saat build, jadi pemuatan awal cepat. Hanya kedua API route yang
 dijalankan per permintaan karena menyentuh database.
 
 ---
@@ -124,7 +124,7 @@ dijalankan per permintaan karena menyentuh database.
 
 ### About Us — [`app/about/page.tsx`](app/about/page.tsx)
 
-Tiga paragraf profil festival, diikuti empat kartu pilar kegiatan: Seminar & Talkshow, NECSC,
+Tiga paragraf profil festival, diikuti empat kartu pilar kegiatan: High Level Dialogue, NECSC,
 Youth Ambassador, dan Campus Roadshow.
 
 ### Agenda — [`app/agenda/page.tsx`](app/agenda/page.tsx)
@@ -171,12 +171,17 @@ abstrak" di NECSC).
 
 ### Isi tiap program
 
-| Program | Halaman penjelasan memuat | Field formulir |
-| --- | --- | --- |
-| **NECSC** | Timeline 6 tahap, total hadiah, 4 subtema, mekanisme 2 tahap, syarat peserta | Nama, institusi, email, telepon, kategori, subtema, 4 berkas unggahan, sumber informasi |
-| **Youth Ambassador** | 3 subtema, mekanisme, 4 KPI program, benefit, format video | Nama, institusi, email, telepon, subtema, 2 bukti, 2 link Reels, sumber informasi |
-| **Campus Roadshow** | Daftar agenda per kampus; tiap agenda punya judul talkshow, tanggal/jam/venue sendiri | Nama, email, WhatsApp, status, **field bersyarat**, sumber informasi |
-| **Seminar** | Kartu acara, deskripsi, benefit, daftar seluruh sesi | Nama, email, nomor handphone, asal instansi |
+| Program                 | Halaman penjelasan memuat                                                             | Field formulir                                                                          |
+| ----------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **NECSC**               | Timeline 6 tahap, total hadiah, 4 subtema, mekanisme 2 tahap, syarat peserta          | Nama, institusi, email, telepon, kategori, subtema, 4 berkas unggahan, sumber informasi |
+| **Youth Ambassador**    | 3 subtema, mekanisme, 4 KPI program, benefit, format video                            | Nama, institusi, email, telepon, subtema, 2 bukti, 2 link Reels, sumber informasi       |
+| **Campus Roadshow**     | Daftar agenda per kampus; tiap agenda punya judul talkshow, tanggal/jam/venue sendiri | Nama, email, WhatsApp, status, **field bersyarat**, sumber informasi                    |
+| **High Level Dialogue** | Kartu acara, deskripsi, benefit, daftar seluruh sesi                                  | Nama, email, nomor handphone, asal instansi                                             |
+
+> **High Level Dialogue** sebelumnya bernama "Seminar". Hanya teks yang tampil ke pengunjung yang
+> berubah — rute `/registration/seminar`, nama berkas, kunci `program="seminar"`, dan tabel
+> `seminar_registrations` tetap memakai nama lama supaya tautan yang sudah tersebar dan data
+> pendaftar yang sudah masuk tidak putus.
 
 ### Pesan konfirmasi khusus
 
@@ -205,10 +210,10 @@ export interface FormField {
   label: string;
   type: "text" | "email" | "tel" | "textarea" | "select" | "file" | "radio";
   required?: boolean;
-  options?: string[];      // untuk select & radio
+  options?: string[]; // untuk select & radio
   placeholder?: string;
-  helpText?: string;       // teks bantuan kecil di bawah input
-  pattern?: string;        // atribut pattern HTML
+  helpText?: string; // teks bantuan kecil di bawah input
+  pattern?: string; // atribut pattern HTML
   showIf?: { field: string; values: string[] };
 }
 ```
@@ -234,12 +239,12 @@ pilihan yang sudah ditinggalkan tidak ikut tersimpan.
 
 ### Validasi berlapis
 
-| Lapis | Yang dicek |
-| --- | --- |
-| Browser | `required`, tipe input, `pattern` (mis. nomor WhatsApp diawali 08) |
-| Client | Hanya field yang tampil yang dikirim |
-| Server | Field wajib, `requiredIf` untuk aturan bersyarat, format email, format WhatsApp dan telepon, nama program yang dikenal, batas panjang 5.000 karakter |
-| Database | `UNIQUE` pada email, `NOT NULL` pada kolom wajib |
+| Lapis    | Yang dicek                                                                                                                                           |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Browser  | `required`, tipe input, `pattern` (mis. nomor WhatsApp diawali 08)                                                                                   |
+| Client   | Hanya field yang tampil yang dikirim                                                                                                                 |
+| Server   | Field wajib, `requiredIf` untuk aturan bersyarat, format email, format WhatsApp dan telepon, nama program yang dikenal, batas panjang 5.000 karakter |
+| Database | `UNIQUE` pada email, `NOT NULL` pada kolom wajib                                                                                                     |
 
 Aturan bersyarat sengaja diulang di server (`requiredIf` di API route) supaya tidak bisa ditembus
 lewat request langsung di luar formulir.
@@ -274,13 +279,13 @@ Alurnya:
 2. Nama field dipetakan ke kolom tabel program lalu di-`INSERT` dengan query berparameter.
 3. Baris log diperbarui: kolom `saved_to` diisi nama tabel bila sukses, atau `error` bila gagal.
 
-| Kode | Arti |
-| --- | --- |
-| `200` | Tersimpan, mengembalikan `id` baris |
+| Kode  | Arti                                      |
+| ----- | ----------------------------------------- |
+| `200` | Tersimpan, mengembalikan `id` baris       |
 | `400` | Validasi gagal atau program tidak dikenal |
-| `405` | Diakses dengan metode `GET` |
+| `405` | Diakses dengan metode `GET`               |
 | `409` | Email sudah terdaftar di program tersebut |
-| `503` | Database tidak bisa dihubungi |
+| `503` | Database tidak bisa dihubungi             |
 
 ### `GET /api/health`
 
@@ -300,15 +305,15 @@ di-import, atau kredensial salah.
 MySQL/MariaDB dengan nama database `green_impact_festival`. Seluruh berkas SQL, diagram relasi,
 dan panduan lengkap ada di folder [database/](database/).
 
-| Tabel | Isi |
-| --- | --- |
-| `necsc_registrations` | Pendaftaran NECSC |
-| `youth_ambassador_registrations` | Pendaftaran Youth Ambassador |
-| `campus_roadshow_registrations` | Pendaftaran Campus Roadshow |
-| `seminar_registrations` | Peserta seminar + status kehadiran |
-| `partnership_inquiries` | Permohonan kemitraan |
-| `submission_logs` | Salinan mentah setiap kiriman (JSON) |
-| `uploaded_files` | Metadata berkas unggahan (disiapkan untuk nanti) |
+| Tabel                            | Isi                                              |
+| -------------------------------- | ------------------------------------------------ |
+| `necsc_registrations`            | Pendaftaran NECSC                                |
+| `youth_ambassador_registrations` | Pendaftaran Youth Ambassador                     |
+| `campus_roadshow_registrations`  | Pendaftaran Campus Roadshow                      |
+| `seminar_registrations`          | Peserta High Level Dialogue + status kehadiran   |
+| `partnership_inquiries`          | Permohonan kemitraan                             |
+| `submission_logs`                | Salinan mentah setiap kiriman (JSON)             |
+| `uploaded_files`                 | Metadata berkas unggahan (disiapkan untuk nanti) |
 
 Tersedia juga lima view siap pakai untuk rekap panitia: `v_semua_pendaftar`, `v_rekap_program`,
 `v_necsc_per_subtema`, `v_ya_per_subtema`, dan `v_roadshow_per_status`.
@@ -374,7 +379,7 @@ berbahasa Indonesia yang bisa ditindaklanjuti.
 │   ├── necsc.ts                      # Info & field form NECSC
 │   ├── youthAmbassador.ts            # Info & field form Youth Ambassador
 │   ├── campusRoadshow.ts             # Info & field form Campus Roadshow (pakai showIf)
-│   ├── seminar.ts                    # Info, field form, teks konfirmasi seminar
+│   ├── seminar.ts                    # Info, field form, teks konfirmasi High Level Dialogue
 │   ├── partnership.ts                # Empat tipe kemitraan
 │   └── faq.ts                        # FAQ + kontak panitia
 ├── lib/
@@ -394,20 +399,20 @@ satu berkas data tanpa menyentuh kode tampilan.
 
 Tema gelap dengan aksen hijau. Didefinisikan di [`tailwind.config.ts`](tailwind.config.ts).
 
-| Token | Nilai | Pemakaian |
-| --- | --- | --- |
-| `night-950` | `#050f0a` | Latar utama halaman |
-| `night-900` | `#0a1f13` | Latar kartu dan input |
-| `night-800` | `#0f2b1b` | Avatar, elemen bertumpuk |
-| `night-700` | `#163823` | Scrollbar |
-| `mint-100` | `#eafaf1` | Teks utama |
-| `mint-200` | `#c9f7de` | Teks sekunder (sering dengan opacity) |
-| `mint-300` | `#a7f3d0` | Judul bagian, tautan |
-| `mint-400` | `#6ee7a8` | Aksen, ikon, garis fokus |
-| `mint-500` | `#3ddc84` | Gradien, sorotan |
-| `brand` | `#1f9d55` | Tombol utama |
-| `brand-dark` | `#167a42` | Tombol utama saat hover |
-| `lime-300` | `#d9f99d` | Garis tepi kartu, gradien sekunder |
+| Token        | Nilai     | Pemakaian                             |
+| ------------ | --------- | ------------------------------------- |
+| `night-950`  | `#050f0a` | Latar utama halaman                   |
+| `night-900`  | `#0a1f13` | Latar kartu dan input                 |
+| `night-800`  | `#0f2b1b` | Avatar, elemen bertumpuk              |
+| `night-700`  | `#163823` | Scrollbar                             |
+| `mint-100`   | `#eafaf1` | Teks utama                            |
+| `mint-200`   | `#c9f7de` | Teks sekunder (sering dengan opacity) |
+| `mint-300`   | `#a7f3d0` | Judul bagian, tautan                  |
+| `mint-400`   | `#6ee7a8` | Aksen, ikon, garis fokus              |
+| `mint-500`   | `#3ddc84` | Gradien, sorotan                      |
+| `brand`      | `#1f9d55` | Tombol utama                          |
+| `brand-dark` | `#167a42` | Tombol utama saat hover               |
+| `lime-300`   | `#d9f99d` | Garis tepi kartu, gradien sekunder    |
 
 Tingkat kedalaman teks diatur lewat opacity (`text-mint-200/70`, `/60`, `/40`) agar hierarki tetap
 konsisten tanpa menambah token warna baru.
@@ -424,14 +429,14 @@ konsisten tanpa menambah token warna baru.
 
 Didefinisikan di [`app/globals.css`](app/globals.css):
 
-| Kelas | Efek |
-| --- | --- |
-| `.card-hover` | Kartu terangkat dengan bayangan hijau saat hover |
-| `.btn-shine` | Kilau menyapu melintasi tombol saat hover |
-| `.text-shimmer` | Teks bergradien yang bergerak |
-| `.link-underline` | Garis bawah melebar dari kiri |
-| `.marquee-mask` | Tepi marquee memudar ke transparan |
-| `.reveal` | Kondisi awal animasi scroll (lihat bagian berikut) |
+| Kelas             | Efek                                               |
+| ----------------- | -------------------------------------------------- |
+| `.card-hover`     | Kartu terangkat dengan bayangan hijau saat hover   |
+| `.btn-shine`      | Kilau menyapu melintasi tombol saat hover          |
+| `.text-shimmer`   | Teks bergradien yang bergerak                      |
+| `.link-underline` | Garis bawah melebar dari kiri                      |
+| `.marquee-mask`   | Tepi marquee memudar ke transparan                 |
+| `.reveal`         | Kondisi awal animasi scroll (lihat bagian berikut) |
 
 ---
 
@@ -439,12 +444,12 @@ Didefinisikan di [`app/globals.css`](app/globals.css):
 
 Semua animasi dibuat dengan CSS dan IntersectionObserver, tanpa library tambahan.
 
-| Komponen | Perilaku |
-| --- | --- |
-| [`Reveal`](components/Reveal.tsx) | Konten muncul saat masuk viewport. Mendukung arah `up`/`down`/`left`/`right`/`zoom` dan `delay` untuk efek bertahap |
-| [`ScrollProgress`](components/ScrollProgress.tsx) | Bar gradien tipis di paling atas mengikuti posisi scroll |
-| [`BackToTop`](components/BackToTop.tsx) | Tombol melayang, muncul setelah scroll 480px |
-| [`template.tsx`](app/template.tsx) | Tiap perpindahan halaman masuk dengan fade dan naik tipis |
+| Komponen                                          | Perilaku                                                                                                            |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [`Reveal`](components/Reveal.tsx)                 | Konten muncul saat masuk viewport. Mendukung arah `up`/`down`/`left`/`right`/`zoom` dan `delay` untuk efek bertahap |
+| [`ScrollProgress`](components/ScrollProgress.tsx) | Bar gradien tipis di paling atas mengikuti posisi scroll                                                            |
+| [`BackToTop`](components/BackToTop.tsx)           | Tombol melayang, muncul setelah scroll 480px                                                                        |
+| [`template.tsx`](app/template.tsx)                | Tiap perpindahan halaman masuk dengan fade dan naik tipis                                                           |
 
 Keyframe yang tersedia di Tailwind: `fade-up`, `fade-in`, `slide-down`, `page-in`, `float`,
 `blob`, `shimmer`, `marquee`, `pulse-ring`, `bounce-subtle`.
@@ -478,16 +483,16 @@ pengaman:
 
 Salin `.env.example` menjadi `.env.local`. Nilai bawaannya sudah cocok dengan XAMPP standar.
 
-| Variabel | Bawaan | Fungsi |
-| --- | --- | --- |
-| `DB_HOST` | `127.0.0.1` | Host MySQL |
-| `DB_PORT` | `3306` | Port MySQL |
-| `DB_USER` | `root` | User MySQL |
-| `DB_PASSWORD` | *(kosong)* | Password MySQL |
-| `DB_NAME` | `green_impact_festival` | Nama database |
-| `DATABASE_URL` | *(kosong)* | Alternatif kelima variabel di atas, format `mysql://user:pass@host:3306/db`. Kalau diisi, nilainya menang |
-| `DB_SSL` | *(kosong)* | `true` (verifikasi sertifikat), `insecure` (tanpa verifikasi), atau kosong untuk XAMPP lokal |
-| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | Base URL untuk metadata dan Open Graph |
+| Variabel               | Bawaan                  | Fungsi                                                                                                    |
+| ---------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------- |
+| `DB_HOST`              | `127.0.0.1`             | Host MySQL                                                                                                |
+| `DB_PORT`              | `3306`                  | Port MySQL                                                                                                |
+| `DB_USER`              | `root`                  | User MySQL                                                                                                |
+| `DB_PASSWORD`          | _(kosong)_              | Password MySQL                                                                                            |
+| `DB_NAME`              | `green_impact_festival` | Nama database                                                                                             |
+| `DATABASE_URL`         | _(kosong)_              | Alternatif kelima variabel di atas, format `mysql://user:pass@host:3306/db`. Kalau diisi, nilainya menang |
+| `DB_SSL`               | _(kosong)_              | `true` (verifikasi sertifikat), `insecure` (tanpa verifikasi), atau kosong untuk XAMPP lokal              |
+| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | Base URL untuk metadata dan Open Graph                                                                    |
 
 `.env.local` diabaikan git, jadi kredensial tidak ikut ter-push.
 
@@ -501,11 +506,11 @@ Untuk membuka pendaftaran sungguhan, siapkan MySQL yang dapat diakses publik (Ra
 Aiven, Clever Cloud, dan sejenisnya), import `database/01-schema.sql` ke sana, lalu isi
 Environment Variables di Vercel:
 
-| Key | Value |
-| --- | --- |
-| `DATABASE_URL` | String koneksi dari penyedia |
-| `DB_SSL` | `true`, atau `insecure` kalau sertifikatnya ditolak |
-| `NEXT_PUBLIC_SITE_URL` | Domain situs, mis. `https://gif2026.vercel.app` |
+| Key                    | Value                                               |
+| ---------------------- | --------------------------------------------------- |
+| `DATABASE_URL`         | String koneksi dari penyedia                        |
+| `DB_SSL`               | `true`, atau `insecure` kalau sertifikatnya ditolak |
+| `NEXT_PUBLIC_SITE_URL` | Domain situs, mis. `https://gif2026.vercel.app`     |
 
 Setelah menyimpan variabel, jalankan **Redeploy** agar nilainya terbaca, lalu periksa
 `https://<domain>/api/health`.
@@ -514,10 +519,10 @@ Setelah menyimpan variabel, jalankan **Redeploy** agar nilainya terbaca, lalu pe
 
 Diatur di [`next.config.js`](next.config.js), keduanya permanen (308):
 
-| Dari | Ke | Alasan |
-| --- | --- | --- |
-| `/necsc` | `/registration/necsc` | Halaman NECSC berdiri sendiri sudah digabung ke alur pendaftaran |
-| `/registration/expo` | `/registration` | Program Expo ditiadakan |
+| Dari                 | Ke                    | Alasan                                                           |
+| -------------------- | --------------------- | ---------------------------------------------------------------- |
+| `/necsc`             | `/registration/necsc` | Halaman NECSC berdiri sendiri sudah digabung ke alur pendaftaran |
+| `/registration/expo` | `/registration`       | Program Expo ditiadakan                                          |
 
 ### Gambar eksternal
 
@@ -531,18 +536,18 @@ tampil saat development.
 
 Semuanya terkumpul di folder `data/` dan sudah ditandai komentar `TODO`.
 
-| Item | Lokasi |
-| --- | --- |
-| Copy About Us resmi (teks sekarang susunan ulang) | [`app/about/page.tsx`](app/about/page.tsx) |
-| Nama dan foto pembicara (sebagian masih "Speaker 1, 2, …") | [`data/agenda.ts`](data/agenda.ts) |
-| Tanggal acara utama | `eventInfo` di [`data/agenda.ts`](data/agenda.ts) |
-| Timeline NECSC dengan tanggal presisi (kini masih per bulan) | [`data/necsc.ts`](data/necsc.ts) |
-| Jawaban FAQ resmi (kini masih draf) | [`data/faq.ts`](data/faq.ts) |
-| Tanggal, jam, venue, tema tiap agenda roadshow | `roadshowAgendas` di [`data/campusRoadshow.ts`](data/campusRoadshow.ts) |
-| Link WhatsApp Community tiap agenda roadshow | `whatsappCommunityUrl` per agenda di file yang sama |
-| Logo kampus | Taruh berkas di [`public/logos/`](public/logos/), lalu isi `logo` per agenda |
-| Tanggal seminar | `seminarEventDetails` di [`data/seminar.ts`](data/seminar.ts) |
-| Link WhatsApp Community GIF 2026 | `seminarCommunityUrl` di file yang sama |
+| Item                                                         | Lokasi                                                                       |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| Copy About Us resmi (teks sekarang susunan ulang)            | [`app/about/page.tsx`](app/about/page.tsx)                                   |
+| Nama dan foto pembicara (sebagian masih "Speaker 1, 2, …")   | [`data/agenda.ts`](data/agenda.ts)                                           |
+| Tanggal acara utama                                          | `eventInfo` di [`data/agenda.ts`](data/agenda.ts)                            |
+| Timeline NECSC dengan tanggal presisi (kini masih per bulan) | [`data/necsc.ts`](data/necsc.ts)                                             |
+| Jawaban FAQ resmi (kini masih draf)                          | [`data/faq.ts`](data/faq.ts)                                                 |
+| Tanggal, jam, venue, tema tiap agenda roadshow               | `roadshowAgendas` di [`data/campusRoadshow.ts`](data/campusRoadshow.ts)      |
+| Link WhatsApp Community tiap agenda roadshow                 | `whatsappCommunityUrl` per agenda di file yang sama                          |
+| Logo kampus                                                  | Taruh berkas di [`public/logos/`](public/logos/), lalu isi `logo` per agenda |
+| Tanggal High Level Dialogue                                  | `seminarEventDetails` di [`data/seminar.ts`](data/seminar.ts)                |
+| Link WhatsApp Community GIF 2026                             | `seminarCommunityUrl` di file yang sama                                      |
 
 ---
 

@@ -1,6 +1,10 @@
 import type { FormField } from "@/components/RegistrationForm";
 
 /**
+ * Data program High Level Dialogue (dulu bernama "Seminar" — nama berkas,
+ * rute /registration/seminar, dan tabel database sengaja dipertahankan supaya
+ * tautan lama dan data pendaftar yang sudah masuk tidak putus).
+ *
  * TODO PANITIA — lengkapi begitu jadwal final diumumkan.
  * Venue sudah pasti; tanggal masih menunggu konfirmasi.
  */
@@ -13,13 +17,15 @@ export const seminarEventDetails = {
 export const seminarCommunityUrl = "";
 
 export const seminarInfo = {
-  title: "Seminar Utama Green Impact Festival 2026",
+  /** Nama program yang tampil ke pengunjung. */
+  name: "High Level Dialogue",
+  title: "High Level Dialogue Green Impact Festival 2026",
   intro:
-    "Rangkaian seminar utama Green Impact Festival 2026 mempertemukan praktisi, akademisi, dan pengambil kebijakan untuk membahas transisi energi, produktivitas ekonomi hijau, dan peran teknologi dalam pembangunan berkelanjutan Indonesia.",
+    "High Level Dialogue Green Impact Festival 2026 mempertemukan praktisi, akademisi, dan pengambil kebijakan untuk membahas transisi energi, produktivitas ekonomi hijau, dan peran teknologi dalam pembangunan berkelanjutan Indonesia.",
   description:
     "Peserta dapat mengikuti seluruh sesi sepanjang hari, mulai dari panel diskusi lintas sektor hingga malam awarding. Terbuka untuk mahasiswa, pelajar, profesional, dan masyarakat umum.",
   benefits: [
-    "Akses ke seluruh sesi seminar sepanjang hari",
+    "Akses ke seluruh sesi High Level Dialogue sepanjang hari",
     "E-sertifikat kehadiran",
     "Kesempatan berjejaring dengan pembicara dan peserta lain",
     "Informasi langsung seputar program GIF 2026 lainnya",
@@ -59,7 +65,7 @@ export const seminarFormFields: FormField[] = [
   },
 ];
 
-/** Teks yang tampil setelah pendaftaran seminar berhasil dikirim. */
+/** Teks yang tampil setelah pendaftaran High Level Dialogue berhasil dikirim. */
 export const seminarSuccess = {
   heading: "Registration Submitted!",
   thanks: "Thank you for registering for Green Impact Festival 2026.",

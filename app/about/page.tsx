@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const PILLARS = [
   {
-    title: "Seminar & Talkshow",
+    title: "High Level Dialogue",
     desc: "Diskusi lintas sektor bersama praktisi, akademisi, dan pengambil kebijakan seputar energi, iklim, dan ekonomi hijau.",
   },
   {
@@ -30,7 +30,7 @@ const PILLARS = [
 
 const PARAGRAPHS = [
   "Green Impact Festival adalah festival inovasi lingkungan tahunan yang diselenggarakan oleh SRE Indonesia bersama Rakyat Merdeka, mempertemukan pelajar, mahasiswa, praktisi, dan pengambil kebijakan untuk mendorong pembangunan berkelanjutan di Indonesia.",
-  "Festival ini menghadirkan rangkaian seminar dengan pembicara ahli, kompetisi artikel ilmiah nasional NECSC, program Youth Ambassador, serta Campus Roadshow yang menjangkau kampus dan sekolah di berbagai daerah.",
+  "Festival ini menghadirkan rangkaian High Level Dialogue bersama pembicara ahli, kompetisi artikel ilmiah nasional NECSC, program Youth Ambassador, serta Campus Roadshow yang menjangkau kampus dan sekolah di berbagai daerah.",
   "Green Impact Festival 2026 diselenggarakan secara offline dan terbuka bagi pelajar SMA/sederajat, mahasiswa, hingga masyarakat umum yang peduli terhadap isu energi, iklim, dan keberlanjutan.",
 ];
 

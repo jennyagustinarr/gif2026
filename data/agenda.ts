@@ -63,7 +63,7 @@ export const agendaSessions: AgendaSession[] = [
   },
 ];
 
-// Info umum acara — dipakai di halaman Home dan pendaftaran Seminar.
+// Info umum acara — dipakai di halaman Home dan pendaftaran High Level Dialogue.
 // TODO: ganti dengan tanggal & venue final begitu diumumkan panitia.
 export const eventInfo = {
   name: "Green Impact Festival 2026",

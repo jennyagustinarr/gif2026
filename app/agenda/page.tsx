@@ -7,7 +7,7 @@ import { agendaSessions, eventInfo } from "@/data/agenda";
 export const metadata: Metadata = {
   title: "Agenda",
   description:
-    "Susunan acara Green Impact Festival 2026: seminar, panel diskusi, dan malam awarding bersama para pembicara ahli.",
+    "Susunan acara Green Impact Festival 2026: High Level Dialogue, panel diskusi, dan malam awarding bersama para pembicara ahli.",
 };
 
 export default function AgendaPage() {

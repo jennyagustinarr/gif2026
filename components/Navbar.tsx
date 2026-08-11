@@ -15,7 +15,7 @@ const REGISTRATION_LINKS = [
   { href: "/registration/youth-ambassador", label: "Youth Ambassador" },
   { href: "/registration/necsc", label: "NECSC" },
   { href: "/registration/campus-roadshow", label: "Campus Roadshow" },
-  { href: "/registration/seminar", label: "Seminar" },
+  { href: "/registration/seminar", label: "High Level Dialogue" },
 ];
 
 const LOGO_URL =
