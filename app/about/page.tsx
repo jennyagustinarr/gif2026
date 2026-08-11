@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
+import ImpactTimeline from "@/components/ImpactTimeline";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -69,6 +70,8 @@ export default function AboutPage() {
           </Reveal>
         ))}
       </div>
+
+      <ImpactTimeline />
 
       {/* CATATAN: ganti paragraf di atas dengan copy About Us asli dari tim GIF,
           karena teks ini disusun ulang dari ringkasan yang tersedia, bukan teks aslinya. */}
